@@ -1,0 +1,13 @@
+{
+    "name": "@mash-up-web-toolkit/gen-api",
+    "type": "module",
+    "scripts": {
+      "dev": "tsc --watch",
+      "build": "tsc"
+    },
+    "exports": {},
+    "devDependencies": {
+      "@mash-up-web-toolkit/typescript-config": "workspace:*",
+      "typescript": "latest"
+    }
+  }

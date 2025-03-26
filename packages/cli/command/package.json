@@ -1,0 +1,25 @@
+{
+  "name": "@mash-up-web-toolkit/command",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@mash-up-web-toolkit/eslint-config": "workspace:*",
+    "@mash-up-web-toolkit/typescript-config": "workspace:*",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@types/node": "^22.13.10",
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "figlet": "^1.8.0",
+    "inquirer": "^12.5.0"
+  }
+}
