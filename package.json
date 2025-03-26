@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "mash-up-web-toolkit",
   "private": true,
   "scripts": {
     "build": "turbo run build",
