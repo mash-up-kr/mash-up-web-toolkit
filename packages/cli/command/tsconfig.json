@@ -1,16 +1,14 @@
 {
-    "extends": "@mash-up-web-toolkit/typescript-config/base.json",
-    "compilerOptions": {
-      "rootDir": "src",
-      "outDir": "dist",
-      "strict": true,
-      "target": "es6",
-      "module": "commonjs",
-      "sourceMap": true,
-      "esModuleInterop": true,
-      "moduleResolution": "node"
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "dist"]
-  }
-  
+  "extends": "@mash-up-web-toolkit/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

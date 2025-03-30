@@ -1,0 +1,25 @@
+{
+  "name": "@mash-up-web-toolkit/generate-api",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@mash-up-web-toolkit/typescript-config": "workspace:*",
+    "tsup": "^8.4.0",
+    "typescript": "latest"
+  }
+}

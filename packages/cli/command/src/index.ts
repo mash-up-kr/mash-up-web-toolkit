@@ -1,20 +1,31 @@
+import figlet from "figlet";
+import inquirer from "inquirer";
 import { Command } from "commander";
-const figlet = require("figlet");
+import { Controller } from "./controller/controller";
 
-// 아스키 아트로 CLI 제목 출력
 console.log(figlet.textSync("Mash-Up Web CLI"));
 
 const program = new Command();
+const controller = new Controller();
 
 program.version("0.0.1").description("Mash-Up Web CLI");
 
-// gen:api 명령어 추가
-program
-  .command("gen:api")
-  .description("Generate API")
-  .action(() => {
-    console.log("Generating API...");
-    // API 생성 로직 추가
+const choices = ["gen:api"];
+
+inquirer
+  .prompt([
+    {
+      name: "command",
+      type: "list",
+      message: "Select the command",
+      choices,
+      default: choices[0],
+    },
+  ])
+  .then((answers) => {
+    if (answers.command === "gen:api") {
+      controller.genApi();
+    }
   });
 
 program.parse(process.argv);
