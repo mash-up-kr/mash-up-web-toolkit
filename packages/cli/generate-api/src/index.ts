@@ -1,3 +1,3 @@
 export const generateApi = async () => {
-  console.log("generate api...");
+  console.log("generate api... test");
 };

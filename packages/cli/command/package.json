@@ -1,27 +1,25 @@
 {
   "name": "@mash-up-web-toolkit/command",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "mash-up-web-toolkit command line interface",
+  "main": "index.mjs",
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:cli": "pnpm run build && node dist/index.mjs"
+    "dev:test": "pnpm build && node dist/index.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@mash-up-web-toolkit/eslint-config": "workspace:*",
     "@mash-up-web-toolkit/typescript-config": "workspace:*",
     "@types/figlet": "^1.7.0",
+    "@types/node": "^22.13.10",
     "tsup": "^8.4.0",
     "typescript": "^5.8.2"
   },
   "dependencies": {
     "@mash-up-web-toolkit/generate-api": "workspace:*",
-    "@types/node": "^22.13.10",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "figlet": "^1.8.0",
