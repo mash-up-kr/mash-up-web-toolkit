@@ -3,8 +3,12 @@ import inquirer from "inquirer";
 import { Command } from "commander";
 import { Controller } from "./controller/controller";
 
-export const main = async () => {
+export const welcome = () => {
   console.log(figlet.textSync("Mash-Up Web CLI"));
+};
+
+export const main = async () => {
+  welcome();
 
   const program = new Command();
   const controller = new Controller();
@@ -17,14 +21,27 @@ export const main = async () => {
       {
         name: "command",
         type: "list",
-        message: "Select the command",
+        message: "명령을 선택해주세요.",
         choices,
         default: choices[0],
       },
     ])
     .then((answers) => {
       if (answers.command === "gen:api") {
-        controller.genApi();
+        inquirer
+          .prompt([
+            {
+              name: "command",
+              type: "list",
+              message: "REST Client를 선택해주세요.",
+              choices: ["fetch", "axios"],
+              default: "fetch",
+            },
+          ])
+          .then((answers) => {
+            const httpClientType = answers.command as "fetch" | "axios";
+            controller.genApi({ httpClientType });
+          });
       }
     });
 
