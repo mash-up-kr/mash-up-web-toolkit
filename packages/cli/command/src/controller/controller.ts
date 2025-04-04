@@ -6,4 +6,8 @@ export class Controller {
   async genApi({ httpClientType }: { httpClientType: "fetch" | "axios" }) {
     await runGenerateApi({httpClientType});
   }
+
+  async initConfig() {
+
+  }
 }

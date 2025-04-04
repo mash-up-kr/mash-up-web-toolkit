@@ -2,19 +2,15 @@ import figlet from "figlet";
 import inquirer from "inquirer";
 import { Command } from "commander";
 import { Controller } from "./controller/controller";
+import { commandFactory } from "./controller/command-factory";
 
 export const welcome = () => {
   console.log(figlet.textSync("Mash-Up Web CLI"));
 };
 
-export const main = async () => {
-  welcome();
-
-  const program = new Command();
+export const runPrompt = async () => {
+  const choices = ["gen:config", "gen:api"];
   const controller = new Controller();
-  const choices = ["gen:api"];
-
-  program.version("0.0.1").description("Mash-Up Web CLI");
 
   inquirer
     .prompt([
@@ -27,24 +23,20 @@ export const main = async () => {
       },
     ])
     .then((answers) => {
-      if (answers.command === "gen:api") {
-        inquirer
-          .prompt([
-            {
-              name: "command",
-              type: "list",
-              message: "REST Client를 선택해주세요.",
-              choices: ["fetch", "axios"],
-              default: "fetch",
-            },
-          ])
-          .then((answers) => {
-            const httpClientType = answers.command as "fetch" | "axios";
-            controller.genApi({ httpClientType });
-          });
-      }
+      commandFactory.executeCommand(answers.command, controller);
     });
+};
 
+export const main = async () => {
+  welcome();
+
+  const program = new Command();
+  program
+    .name("mash-up")
+    .description("Mash-Up Web Toolkit CLI")
+    .version("0.0.1");
+
+  runPrompt();
   program.parse(process.argv);
 };
 

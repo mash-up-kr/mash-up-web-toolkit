@@ -1,0 +1,9 @@
+
+# build
+.build
+
+# node_modules
+node_modules
+
+# generated
+src/generated

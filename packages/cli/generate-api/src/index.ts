@@ -1,22 +1,14 @@
 import path from "node:path";
 import { generateApi } from "swagger-typescript-api";
+import { generateSwaggerApi } from "./handler/handler.js";
 
 export const runGenerateApi = async ({
   httpClientType,
 }: {
   httpClientType: "fetch" | "axios";
 }) => {
-  generateApi({
-    output: path.resolve(process.cwd(), "./src/generated"),
+  generateSwaggerApi({
     url: "https://petstore.swagger.io/v2/swagger.json",
-    httpClientType: httpClientType,
-  })
-    .then(() => {
-      console.log("✅ API 생성 완료! 🌈✨");
-      process.exit(0);
-    })
-    .catch((error) => {
-      console.error("❌ API 생성 실패:", error);
-      process.exit(1);
-    });
+    httpClientType,
+  });
 };
