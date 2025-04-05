@@ -1,13 +1,16 @@
 {
   "extends": "@mash-up-web-toolkit/typescript-config/base.json",
   "compilerOptions": {
+    "moduleResolution": "nodenext",
     "outDir": "dist",
-    "rootDir": "src",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/controller/*": ["src/controller/*"],
+      "@/config/*": ["src/config/*"],
+      "@/types/*": ["src/types/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

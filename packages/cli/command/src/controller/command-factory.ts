@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { Controller } from "./controller";
+import { Controller } from "@/controller/controller.js";
 
 export interface CommandHandler {
   execute(controller: Controller): Promise<void>;
@@ -9,11 +9,11 @@ class CommandFactory {
   private handlers: Record<string, CommandHandler> = {};
 
   constructor() {
-    this.registerHandler("gen:api", new GenApiCommandHandler());
-    this.registerHandler("gen:config", new GenConfigCommandHandler());
+    this.register("gen:api", new GenApiCommandHandler());
+    this.register("gen:config", new GenConfigCommandHandler());
   }
 
-  registerHandler(command: string, handler: CommandHandler) {
+  register(command: string, handler: CommandHandler) {
     this.handlers[command] = handler;
   }
 
@@ -40,7 +40,6 @@ class GenApiCommandHandler implements CommandHandler {
         default: "fetch",
       },
     ]);
-
     const httpClientType = command as "fetch" | "axios";
     await controller.genApi({ httpClientType });
   }

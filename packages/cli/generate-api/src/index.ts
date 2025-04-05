@@ -1,6 +1,4 @@
-import path from "node:path";
-import { generateApi } from "swagger-typescript-api";
-import { generateSwaggerApi } from "./handler/handler.js";
+import { generateSwaggerApi } from "@/generator/generator.js";
 
 export const runGenerateApi = async ({
   httpClientType,

@@ -1,8 +1,12 @@
 import figlet from "figlet";
 import inquirer from "inquirer";
 import { Command } from "commander";
-import { Controller } from "./controller/controller";
-import { commandFactory } from "./controller/command-factory";
+import { Controller } from "@/controller/controller.js";
+import { commandFactory } from "@/controller/command-factory.js";
+
+// config 모듈 내보내기
+export { defineConfig } from "./config/index.js";
+export type { MashupConfig } from "./types/types.js";
 
 export const welcome = () => {
   console.log(figlet.textSync("Mash-Up Web CLI"));

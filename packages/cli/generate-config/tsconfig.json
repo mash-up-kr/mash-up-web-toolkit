@@ -5,8 +5,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@/generator/*": ["src/generator/*"]
+      "@/*": ["src/*"]
     }
   },
   "include": ["src"],

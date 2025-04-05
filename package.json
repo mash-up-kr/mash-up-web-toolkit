@@ -7,9 +7,9 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "clean:cli": "cd packages/cli/command && pnpm clean && cd ../generate-api && pnpm clean",
-    "build:cli": "cd packages/cli/command && pnpm build && cd ../generate-api && pnpm build",
-    "dev:cli": "pnpm build:cli && node packages/cli/command/dist/index.mjs"
+    "clean:cli": "cd packages/cli/command && pnpm clean && cd ../generate-api && pnpm clean && cd ../generate-config && pnpm clean",
+    "build:cli": "cd packages/cli/command && pnpm build && cd ../generate-api && pnpm build && cd ../generate-config && pnpm build",
+    "dev:cli": "pnpm build:cli && cd packages/cli/command && pnpm dev"
   },
   "devDependencies": {
     "prettier": "^3.5.3",

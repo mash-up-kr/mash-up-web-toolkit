@@ -23,6 +23,9 @@ importers:
       '@mash-up-web-toolkit/generate-api':
         specifier: workspace:*
         version: link:../generate-api
+      '@mash-up-web-toolkit/generate-config':
+        specifier: workspace:*
+        version: link:../generate-config
       chalk:
         specifier: ^5.4.1
         version: 5.4.1
@@ -73,6 +76,24 @@ importers:
       typescript:
         specifier: latest
         version: 5.8.2
+
+  packages/cli/generate-config:
+    devDependencies:
+      '@mash-up-web-toolkit/typescript-config':
+        specifier: workspace:*
+        version: link:../../typescript-config
+      '@types/node':
+        specifier: ^22.13.10
+        version: 22.14.0
+      tsup:
+        specifier: ^8.4.0
+        version: 8.4.0(jiti@2.4.2)(tsx@4.19.3)(typescript@5.8.3)
+      tsx:
+        specifier: ^4.19.3
+        version: 4.19.3
+      typescript:
+        specifier: latest
+        version: 5.8.3
 
   packages/eslint-config:
     devDependencies:
@@ -2594,6 +2615,11 @@ packages:
 
   typescript@5.8.2:
     resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  typescript@5.8.3:
+    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -5362,6 +5388,32 @@ snapshots:
       - tsx
       - yaml
 
+  tsup@8.4.0(jiti@2.4.2)(tsx@4.19.3)(typescript@5.8.3):
+    dependencies:
+      bundle-require: 5.1.0(esbuild@0.25.2)
+      cac: 6.7.14
+      chokidar: 4.0.3
+      consola: 3.4.2
+      debug: 4.4.0
+      esbuild: 0.25.2
+      joycon: 3.1.1
+      picocolors: 1.1.1
+      postcss-load-config: 6.0.1(jiti@2.4.2)(tsx@4.19.3)
+      resolve-from: 5.0.0
+      rollup: 4.39.0
+      source-map: 0.8.0-beta.0
+      sucrase: 3.35.0
+      tinyexec: 0.3.2
+      tinyglobby: 0.2.12
+      tree-kill: 1.2.2
+    optionalDependencies:
+      typescript: 5.8.3
+    transitivePeerDependencies:
+      - jiti
+      - supports-color
+      - tsx
+      - yaml
+
   tsx@4.19.3:
     dependencies:
       esbuild: 0.25.2
@@ -5448,6 +5500,8 @@ snapshots:
   typescript@5.1.6: {}
 
   typescript@5.8.2: {}
+
+  typescript@5.8.3: {}
 
   uglify-js@3.19.3:
     optional: true

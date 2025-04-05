@@ -2,11 +2,19 @@
   "name": "@mash-up-web-toolkit/command",
   "version": "0.0.1",
   "description": "mash-up-web-toolkit command line interface",
-  "main": "index.mjs",
+  "type": "module",
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
-    "dev:test": "pnpm build && node dist/index.mjs"
+    "dev": "pnpm build && node dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./index.d.ts",
+        "default": "./index.js"
+      }
+    }
   },
   "keywords": [],
   "author": "",
@@ -20,6 +28,7 @@
   },
   "dependencies": {
     "@mash-up-web-toolkit/generate-api": "workspace:*",
+    "@mash-up-web-toolkit/generate-config": "workspace:*",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "figlet": "^1.8.0",
