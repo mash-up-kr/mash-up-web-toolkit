@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "mash-up-web-toolkit command line interface",
   "type": "module",
+  "bin": {
+    "mash-up-web": "./dist/index.js"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
@@ -11,8 +14,8 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./index.d.ts",
-        "default": "./index.js"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       }
     }
   },

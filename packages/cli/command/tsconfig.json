@@ -1,7 +1,6 @@
 {
   "extends": "@mash-up-web-toolkit/typescript-config/base.json",
   "compilerOptions": {
-    "moduleResolution": "nodenext",
     "outDir": "dist",
     "rootDir": ".",
     "baseUrl": ".",
