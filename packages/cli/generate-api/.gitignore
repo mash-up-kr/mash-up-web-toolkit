@@ -7,3 +7,5 @@ node_modules
 
 # generated
 src/generated
+
+mashup.config.ts

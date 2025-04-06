@@ -1,7 +1,7 @@
 import { MashupConfig } from "@/types/types.js";
 
 /**
- * 타입 안전성을 갖춘 설정 객체를 정의하는 헬퍼 함수
+ * 설정 객체를 정의하는 헬퍼 함수
  *
  * @example
  * ```ts
