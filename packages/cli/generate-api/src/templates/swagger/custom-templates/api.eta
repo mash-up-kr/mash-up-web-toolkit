@@ -1,0 +1,47 @@
+<%
+const { utils, route, config, modelTypes, myConfig } = it;
+const { axiosInstancePath, QUERY_HOOK_IMPORT_LINE_INDICATOR } = myConfig;
+const { _, pascalCase, require } = utils;
+
+const apiClassName = pascalCase(route.moduleName) + 'Api';
+const routes = route.routes;
+
+const dataContracts = _.map(modelTypes, "name");
+const instanceName = route.moduleName + 'Api';
+const instancePath = axiosInstancePath || "axios instance path input";
+
+const removeControllerKeyword = (str) => {
+  return str.split("Controller").join("");
+}
+%>
+
+<% if(route.moduleName !== 'health') { %> <% /* health check 제외*/ %>
+
+<% if (config.httpClientType === config.constants.HTTP_CLIENT.AXIOS) { %> 
+import { AxiosError } from "axios"; 
+<% } %>
+
+import { <%=instanceName%> } from './<%=pascalCase(route.moduleName)%>.api';
+// <%~QUERY_HOOK_IMPORT_LINE_INDICATOR%>
+
+import instance from "<%~ instancePath%>";
+import { HttpClient, RequestParams, ContentType, HttpResponse } from "../@<%~ config.fileNames.httpClient %>";
+<% if (dataContracts.length) { %>
+import { <%~ dataContracts.join(", ") %> } from "../@types/<%~ config.fileNames.dataContracts %>"
+<% } %>
+
+export class <%= apiClassName %><SecurityDataType=unknown><% if (!config.singleHttpClient) { %> extends HttpClient<SecurityDataType> <% } %> {
+    <% if(config.singleHttpClient) { %>
+    http: HttpClient<SecurityDataType>;
+
+      constructor (http: HttpClient<SecurityDataType>) {
+        this.http = http;
+        }
+        <% } %>
+
+        <% routes.forEach((route) => { %>
+        <%~ includeFile('./procedure-call.ejs', { ...it, route }) %>
+        <% }) %>
+        }
+
+export const <%= instanceName %> = new <%= apiClassName %>({instance});
