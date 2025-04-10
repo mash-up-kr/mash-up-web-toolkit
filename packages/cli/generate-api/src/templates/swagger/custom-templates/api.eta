@@ -1,6 +1,6 @@
 <%
 const { utils, route, config, modelTypes, myConfig } = it;
-const { axiosInstancePath, QUERY_HOOK_IMPORT_LINE_INDICATOR } = myConfig;
+const { axiosInstancePath } = myConfig;
 const { _, pascalCase, require } = utils;
 
 const apiClassName = pascalCase(route.moduleName) + 'Api';
@@ -22,7 +22,6 @@ import { AxiosError } from "axios";
 <% } %>
 
 import { <%=instanceName%> } from './<%=pascalCase(route.moduleName)%>.api';
-// <%~QUERY_HOOK_IMPORT_LINE_INDICATOR%>
 
 import instance from "<%~ instancePath%>";
 import { HttpClient, RequestParams, ContentType, HttpResponse } from "../@<%~ config.fileNames.httpClient %>";
@@ -45,3 +44,5 @@ export class <%= apiClassName %><SecurityDataType=unknown><% if (!config.singleH
         }
 
 export const <%= instanceName %> = new <%= apiClassName %>({instance});
+
+<% }%>

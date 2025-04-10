@@ -11,7 +11,9 @@ const pathParams = _.values(parameters);
 const pathParamsNames = _.map(pathParams, "name");
 
 const routeNameUsage = route.routeName.usage;
-const methodName = route.raw.operationId.split('_')[1];
+const methodName = route.raw.operationId.includes('_') 
+  ? route.raw.operationId.split('_')[1] 
+  : route.raw.operationId;
 
 const isFetchTemplate = config.httpClientType === HTTP_CLIENT.FETCH;
 
