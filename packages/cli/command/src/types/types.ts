@@ -3,6 +3,7 @@ export interface GenApiConfig {
   url: string;
   input?: string;
   httpClientType?: "axios" | "fetch";
+  instancePath?: string;
 }
 
 export interface MashupConfig {

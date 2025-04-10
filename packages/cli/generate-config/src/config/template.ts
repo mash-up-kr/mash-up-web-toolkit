@@ -11,6 +11,11 @@ export default defineConfig({
          * 생성할 API의 주소
          */
         url: "주소를 입력해주세요.",
+
+        /**
+         * fetch 또는 axios 인스턴스 경로
+         */
+        instancePath: "fetch 또는 axios 인스턴스 경로를 입력해주세요.",
     }
 })
 `;

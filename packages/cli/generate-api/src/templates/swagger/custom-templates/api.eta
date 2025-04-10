@@ -1,6 +1,6 @@
 <%
 const { utils, route, config, modelTypes, myConfig } = it;
-const { axiosInstancePath } = myConfig;
+const { instancePath } = myConfig;
 const { _, pascalCase, require } = utils;
 
 const apiClassName = pascalCase(route.moduleName) + 'Api';
@@ -8,7 +8,6 @@ const routes = route.routes;
 
 const dataContracts = _.map(modelTypes, "name");
 const instanceName = route.moduleName + 'Api';
-const instancePath = axiosInstancePath || "axios instance path input";
 
 const removeControllerKeyword = (str) => {
   return str.split("Controller").join("");

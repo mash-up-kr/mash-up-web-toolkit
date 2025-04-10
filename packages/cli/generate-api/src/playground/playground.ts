@@ -18,7 +18,7 @@ async function playground() {
           ...currentConfiguration,
           myConfig: {
             // TODO: path 변경
-            axiosInstancePath: "./src/generated/axios-instance.ts",
+            instancePath: "./src/generated/axios-instance.ts",
           },
         };
       },
