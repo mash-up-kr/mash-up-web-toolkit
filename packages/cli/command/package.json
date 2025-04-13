@@ -34,6 +34,7 @@
     "@mash-up-web-toolkit/generate-config": "workspace:*",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
+    "esbuild": "^0.25.2",
     "figlet": "^1.8.0",
     "inquirer": "^12.5.0"
   }

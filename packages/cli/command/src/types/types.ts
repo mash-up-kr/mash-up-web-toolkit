@@ -11,5 +11,3 @@ export interface MashupConfig {
 
   [key: string]: any;
 }
-
-export type DefineConfigFn = (config: MashupConfig) => MashupConfig;

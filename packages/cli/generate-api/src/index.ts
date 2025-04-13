@@ -2,23 +2,28 @@ import path from "node:path";
 
 import { generateSwaggerApi } from "@/generator/generator.js";
 import { GenerateApiParams } from "swagger-typescript-api";
+import { generateConfig } from "./configs/generate-config.js";
 
 export type GenerateApiParamsType = {
   httpClientType: "fetch" | "axios";
-  instancePath: string;
-};
+  instancePath?: string;
+  url: string;
+} & GenerateApiParams;
 
+// @TODO: fetch template 추가하기
 export const runGenerateApi = async (params: GenerateApiParamsType) => {
-  // @TODO: params mashup.config.ts 에서 가져오기
-  const { httpClientType, instancePath } = params || {};
-
-  generateSwaggerApi({
+  const { instancePath } = params || {};
+  const result = await generateSwaggerApi({
+    ...params,
+    templates:
+      params.httpClientType === "axios"
+        ? generateConfig["CUSTOM_TEMPLATE_AXIOS"]
+        : generateConfig["CUSTOM_TEMPLATE_FETCH"],
+    addReadonly: true,
     modular: true,
     moduleNameFirstTag: false,
     typeSuffix: "Type",
     output: path.resolve(process.cwd(), "./src/__generated__"),
-    url: "https://petstore.swagger.io/v2/swagger.json",
-    httpClientType,
     hooks: {
       onPrepareConfig: (currentConfiguration) => {
         return {

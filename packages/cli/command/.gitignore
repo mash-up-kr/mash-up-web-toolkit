@@ -6,4 +6,4 @@
 node_modules
 
 # generated
-src/generated
+/src/__generated__

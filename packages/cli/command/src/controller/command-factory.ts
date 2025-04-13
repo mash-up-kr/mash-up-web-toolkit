@@ -41,7 +41,9 @@ class GenApiCommandHandler implements CommandHandler {
       },
     ]);
     const httpClientType = command as "fetch" | "axios";
-    await controller.genApi({ httpClientType });
+    await controller.genApi({
+      httpClientType,
+    });
   }
 }
 

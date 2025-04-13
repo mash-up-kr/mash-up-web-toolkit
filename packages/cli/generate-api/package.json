@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts",
+    "build": "tsup src/index.ts --format esm --dts && cp -r src/templates dist/",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
     "playground": "tsx src/playground/playground.ts"
   },

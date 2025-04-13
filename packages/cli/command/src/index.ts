@@ -5,7 +5,6 @@ import { Controller } from "@/controller/controller.js";
 import { commandFactory } from "@/controller/command-factory.js";
 
 // config 모듈 내보내기
-export { defineConfig } from "./config/index.js";
 export type { MashupConfig } from "./types/types.js";
 
 export const welcome = () => {

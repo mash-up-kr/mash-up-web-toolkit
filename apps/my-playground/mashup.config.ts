@@ -1,6 +1,6 @@
-import { defineConfig } from "@mash-up-web-toolkit/command";
+import { MashupConfig } from "@mash-up-web-toolkit/command";
 
-export default defineConfig({
+const config: MashupConfig = {
   "gen:api": {
     /**
      * 생성될 파일의 경로
@@ -10,6 +10,13 @@ export default defineConfig({
     /**
      * 생성할 API의 주소
      */
-    url: "주소를 입력해주세요.",
+    url: "https://petstore.swagger.io/v2/swagger.json",
+
+    /**
+     * fetch 또는 axios 인스턴스 경로
+     */
+    instancePath: "@/configs/axios/instance",
   },
-});
+};
+
+export default config;
