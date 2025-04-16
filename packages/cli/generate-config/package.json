@@ -1,7 +1,7 @@
 {
   "name": "@mash-up-web-toolkit/generate-config",
   "version": "0.0.1",
-  "description": "config 파일을 생성합니다",
+  "description": "Create config for @mash-up-web-toolkit/command",
   "type": "module",
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts",
@@ -16,10 +16,9 @@
   "files": [
     "dist"
   ],
-  "author": "",
+  "author": "brightbong92",
   "license": "ISC",
   "devDependencies": {
-    "@mash-up-web-toolkit/typescript-config": "workspace:*",
     "@types/node": "^22.13.10",
     "tsup": "^8.4.0",
     "tsx": "^4.19.3",
