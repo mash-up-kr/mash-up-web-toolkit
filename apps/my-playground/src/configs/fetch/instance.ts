@@ -55,7 +55,7 @@ interceptors.request.use((config) => {
     ...config,
     headers: {
       ...config.headers,
-      // 필요한 헤더만 추가
+      // 필요한 헤더 추가
       // 예: "Content-Type": "application/json",
     },
   };
