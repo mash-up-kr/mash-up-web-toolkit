@@ -1,6 +1,10 @@
 import axios, { AxiosError } from 'axios';
 
-const instance = axios.create({});
+
+const instance = axios.create({
+  // baseURL을 작성해주세요.
+  baseURL: 'https://petstore.swagger.io/v2',
+});
 
 instance.interceptors.request.use(
   async (config) => {

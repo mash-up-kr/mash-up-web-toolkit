@@ -1,0 +1,77 @@
+<%
+  const { modelTypes, utils } = it;
+  const { formatDescription, require, _ } = utils;
+  
+
+  const dataContractTemplates = {
+    enum: (contract) => {
+    const enumNames = contract['x-enumNames'];
+
+    if (!contract.enum || !enumNames) {
+      console.warn("Warning: 'enum' or 'x-enum' not found in contract:", {
+        name: contract.name,
+        enum: contract.enum?.join(", "),
+        "x-enumNames": enumNames?.join(", ")
+      });
+      const comment = (() => {
+        if (!contract.enum?.length) return 'Enum Values Missing'
+        if (!enumNames?.length) return 'X-enumName Values Missing'
+        return ''
+      })()
+      return `type ${contract.name} = ${contract?.enum?.map(e => `"${e}"`).join("|") || "string"}; // ${comment}`;
+    }
+
+    if (contract.enum.length !== enumNames.length) {
+      console.warn("Warning: Length mismatch between 'enum' and 'x-enumNames' in contract:", {
+        name: contract.name,
+        enum: contract.enum?.join(", "),
+        "x-enumNames": enumNames?.join(", ")
+      });
+      return `type ${contract.name} = ${contract.enum?.map(e => `"${e}"`).join("|")}; // Length mismatch`;
+    }
+
+    const mapName =  contract.name + "Map"; 
+    const map = (contract.enum || []).map((key, idx) => {
+      const keyName = typeof key === 'number' ? key : `"${key}"`;
+      return `${keyName} : "${enumNames?.[idx]}"`;
+    }).join(", ");
+
+    return `type ${contract.name} = keyof typeof ${mapName};  export const ${mapName} = {\r\n${map} \r\n } as const`;
+
+    },
+    interface: (contract) => {
+      return `interface ${contract.name} {\r\n${contract.content}}`;
+    },
+    type: (contract) => {
+      return `type ${contract.name} = ${contract.content}`;
+    },
+  }
+
+  const createDescription = (contract) => {
+    if (!contract.typeData) return _.compact([contract.description]);
+
+    return _.compact([
+        contract.description && formatDescription(contract.description),
+        !_.isUndefined(contract.typeData.format) && `@format ${contract.typeData.format}`,
+        !_.isUndefined(contract.typeData.minimum) && `@min ${contract.typeData.minimum}`,
+        !_.isUndefined(contract.typeData.maximum) && `@max ${contract.typeData.maximum}`,
+        !_.isUndefined(contract.typeData.pattern) && `@pattern ${contract.typeData.pattern}`,
+        !_.isUndefined(contract.typeData.example) && `@example ${
+          _.isObject(contract.typeData.example) ? JSON.stringify(contract.typeData.example) : contract.typeData.example
+        }`,
+    ]);
+  }
+%>
+
+<% modelTypes.forEach((contract) => { %>
+<% const description = createDescription(contract); %>
+<% if (description.length) { %>
+/**
+<%~ description.map(part => `* ${part}`).join("\n") %>
+
+*/
+<% } %>
+export <%~ (dataContractTemplates[contract.typeIdentifier] || dataContractTemplates.type)(contract) %>
+
+
+<% }) %>

@@ -10,7 +10,7 @@ export type GenerateApiParamsType = {
   url: string;
 } & GenerateApiParams;
 
-// @TODO: fetch template 추가하기
+// @TODO: generate 이후 파일 쓰기 추가하기
 export const runGenerateApi = async (params: GenerateApiParamsType) => {
   const { instancePath } = params || {};
   const result = await generateSwaggerApi({

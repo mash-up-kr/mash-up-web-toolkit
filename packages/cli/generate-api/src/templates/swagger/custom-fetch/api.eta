@@ -1,0 +1,43 @@
+<%
+const { utils, route, config, modelTypes, myConfig } = it;
+const { instancePath } = myConfig;
+const { _, pascalCase, require } = utils;
+
+const apiClassName = pascalCase(route.moduleName) + 'Api';
+const routes = route.routes;
+
+const dataContracts = _.map(modelTypes, "name");
+const instanceName = route.moduleName + 'Api';
+
+const removeControllerKeyword = (str) => {
+  return str.split("Controller").join("");
+}
+%>
+
+<% if(route.moduleName !== 'health') { %> <% /* health check 제외*/ %>
+
+import { <%=instanceName%> } from './<%=pascalCase(route.moduleName)%>.api';
+
+import customFetch from "<%~ instancePath%>";
+import { HttpClient, RequestParams, ContentType, HttpResponse } from "./<%~ config.fileNames.httpClient %>";
+<% if (dataContracts.length) { %>
+import { <%~ dataContracts.join(", ") %> } from "./<%~ config.fileNames.dataContracts %>"
+<% } %>
+
+export class <%= apiClassName %><SecurityDataType=unknown><% if (!config.singleHttpClient) { %> extends HttpClient<SecurityDataType> <% } %> {
+    <% if(config.singleHttpClient) { %>
+    http: HttpClient<SecurityDataType>;
+
+      constructor (http: HttpClient<SecurityDataType>) {
+        this.http = http;
+        }
+        <% } %>
+
+        <% routes.forEach((route) => { %>
+        <%~ includeFile('./procedure-call.ejs', { ...it, route }) %>
+        <% }) %>
+        }
+
+export const <%= instanceName %> = new <%= apiClassName %>({customFetch: customFetch});
+
+<% }%>
