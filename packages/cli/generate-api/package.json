@@ -1,6 +1,7 @@
 {
   "name": "@mash-up-web-toolkit/generate-api",
   "version": "0.0.1",
+  "description": "Generate API code by @mash-up-web-toolkit/command",
   "type": "module",
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts && cp -r src/templates dist/",
@@ -16,6 +17,8 @@
   "files": [
     "dist"
   ],
+  "author": "brightbong92",
+  "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.13.10",
     "tsup": "^8.4.0",
