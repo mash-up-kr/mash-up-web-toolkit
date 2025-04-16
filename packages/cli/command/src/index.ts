@@ -7,13 +7,14 @@ import { commandFactory } from "@/controller/command-factory.js";
 // config 모듈 내보내기
 export type { MashupConfig } from "./types/types.js";
 
+const controller = new Controller();
+
 export const welcome = () => {
   console.log(figlet.textSync("Mash-Up Web CLI"));
 };
 
 export const runPrompt = async () => {
   const choices = ["gen:config", "gen:api"];
-  const controller = new Controller();
 
   inquirer
     .prompt([
@@ -39,8 +40,31 @@ export const main = async () => {
     .description("Mash-Up Web Toolkit CLI")
     .version("0.0.1");
 
-  runPrompt();
-  program.parse(process.argv);
+  program
+    .command("gen:api")
+    .description("API 코드를 생성합니다")
+    .option(
+      "-t, --type <type>",
+      "HTTP 클라이언트 타입 (fetch 또는 axios)",
+      "fetch"
+    )
+    .action(async (options) => {
+      const httpClientType = options.type as "fetch" | "axios";
+      await controller.genApi({ httpClientType });
+    });
+
+  program
+    .command("gen:config")
+    .description("설정 파일을 생성합니다")
+    .action(async () => {
+      await controller.initConfig();
+    });
+
+  if (process.argv.length <= 2) {
+    runPrompt();
+  } else {
+    program.parse(process.argv);
+  }
 };
 
 main();

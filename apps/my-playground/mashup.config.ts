@@ -15,7 +15,7 @@ const config: MashupConfig = {
     /**
      * fetch 또는 axios 인스턴스 경로
      */
-    instancePath: "@/configs/axios/instance",
+    instancePath: "@/configs/fetch/instance",
   },
 };
 

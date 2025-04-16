@@ -38,6 +38,6 @@ export class <%= apiClassName %><SecurityDataType=unknown><% if (!config.singleH
         <% }) %>
         }
 
-export const <%= instanceName %> = new <%= apiClassName %>({customFetch: customFetch});
+export const <%= instanceName %> = new <%= apiClassName %>({ customFetch });
 
 <% }%>
