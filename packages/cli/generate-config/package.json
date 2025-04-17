@@ -1,10 +1,15 @@
 {
   "name": "@mash-up-web-toolkit/generate-config",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Create config for @mash-up-web-toolkit/command",
   "author": "brightbong92",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mash-up-kr/mash-up-web-toolkit/tree/main/packages/cli/generate-config",
+    "directory": "packages/cli/generate-config"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo"

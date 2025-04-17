@@ -2,7 +2,14 @@
 
 - OAS를 기반으로 API 클라이언트 코드를 자동 생성합니다. (axios / fetch 지원)
 
-### Instance Sample Code
+## How to use
+
+1) axios 또는 fetch Instance파일을 생성합니다.
+    - 샘플코드를 그대로 사용하셔도 됩니다.
+2) [@mash-up-web-toolkit/command](https://github.com/mash-up-kr/mash-up-web-toolkit/tree/main/packages/cli/command "@mash-up-web-toolkit/command") 를 사용해 API code를 생성합니다.
+
+
+## Instance sample code
 
 ```ts
 // instance.ts (axios)
