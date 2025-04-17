@@ -1,13 +1,13 @@
 {
   "name": "@mash-up-web-toolkit/generate-api",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "API client code generator used by @mash-up-web-toolkit/command",
   "type": "module",
   "author": "brightbong92",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mash-up-kr/mash-up-web-toolkit/tree/main/packages/cli/generate-api",
+    "url": "https://github.com/mash-up-kr/mash-up-web-toolkit.git",
     "directory": "packages/cli/generate-api"
   },
   "scripts": {

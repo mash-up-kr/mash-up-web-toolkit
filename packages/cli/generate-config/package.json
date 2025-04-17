@@ -1,13 +1,13 @@
 {
   "name": "@mash-up-web-toolkit/generate-config",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Create config for @mash-up-web-toolkit/command",
   "author": "brightbong92",
   "license": "MIT",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mash-up-kr/mash-up-web-toolkit/tree/main/packages/cli/generate-config",
+    "url": "https://github.com/mash-up-kr/mash-up-web-toolkit.git",
     "directory": "packages/cli/generate-config"
   },
   "scripts": {

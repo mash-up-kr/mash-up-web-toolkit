@@ -1,10 +1,15 @@
 {
   "name": "@mash-up-web-toolkit/command",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "mash-up-web-toolkit command line interface",
   "author": "brightbong92",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mash-up-kr/mash-up-web-toolkit.git",
+    "directory": "packages/cli/command"
+  },
   "bin": {
     "mash-up-web": "./dist/index.js"
   },
@@ -28,9 +33,12 @@
     "tsup": "^8.4.0",
     "typescript": "^5.8.2"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
-    "@mash-up-web-toolkit/generate-api": "0.0.2",
-    "@mash-up-web-toolkit/generate-config": "0.0.2",
+    "@mash-up-web-toolkit/generate-api": "0.0.4",
+    "@mash-up-web-toolkit/generate-config": "0.0.4",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "esbuild": "^0.25.2",
