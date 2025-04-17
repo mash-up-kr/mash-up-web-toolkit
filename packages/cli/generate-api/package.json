@@ -1,6 +1,6 @@
 {
   "name": "@mash-up-web-toolkit/generate-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate API code by @mash-up-web-toolkit/command",
   "type": "module",
   "author": "brightbong92",

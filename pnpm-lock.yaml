@@ -67,11 +67,11 @@ importers:
   packages/cli/command:
     dependencies:
       '@mash-up-web-toolkit/generate-api':
-        specifier: workspace:*
-        version: link:../generate-api
+        specifier: 0.0.2
+        version: 0.0.2
       '@mash-up-web-toolkit/generate-config':
-        specifier: workspace:*
-        version: link:../generate-config
+        specifier: 0.0.2
+        version: 0.0.2
       chalk:
         specifier: ^5.4.1
         version: 5.4.1
@@ -88,9 +88,6 @@ importers:
         specifier: ^12.5.0
         version: 12.5.0(@types/node@22.14.0)
     devDependencies:
-      '@mash-up-web-toolkit/typescript-config':
-        specifier: workspace:*
-        version: link:../../typescript-config
       '@types/figlet':
         specifier: ^1.7.0
         version: 1.7.0
@@ -110,9 +107,6 @@ importers:
         specifier: 13.0.3
         version: 13.0.3
     devDependencies:
-      '@mash-up-web-toolkit/typescript-config':
-        specifier: workspace:*
-        version: link:../../typescript-config
       '@types/node':
         specifier: ^22.13.10
         version: 22.14.0
@@ -128,9 +122,6 @@ importers:
 
   packages/cli/generate-config:
     devDependencies:
-      '@mash-up-web-toolkit/typescript-config':
-        specifier: workspace:*
-        version: link:../../typescript-config
       '@types/node':
         specifier: ^22.13.10
         version: 22.14.0
@@ -712,6 +703,12 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
+  '@mash-up-web-toolkit/generate-api@0.0.2':
+    resolution: {integrity: sha512-hJhJcEbp0zhmaVi8HuMSZx8wVBvpmWPnoJWpbNvMBqN7dihhulo1zmkmSYl/pWghegrAVJAz7s69BTo5gEGGmw==}
+
+  '@mash-up-web-toolkit/generate-config@0.0.2':
+    resolution: {integrity: sha512-B0qaZ+EWW37eoAk1ikhD0yBvo123CxXGHPtDLfkhJv1AGp6044GCx63CgJ2icy0zV1WIipgZtfiRqjrT78rr2Q==}
 
   '@napi-rs/wasm-runtime@0.2.8':
     resolution: {integrity: sha512-OBlgKdX7gin7OIq4fadsjpg+cp2ZphvAIKucHsNfTdJiqdOmOEwQd/bHi0VwNrcw5xpBJyUw6cK/QilCqy1BSg==}
@@ -3946,6 +3943,14 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  '@mash-up-web-toolkit/generate-api@0.0.2':
+    dependencies:
+      swagger-typescript-api: 13.0.3
+    transitivePeerDependencies:
+      - encoding
+
+  '@mash-up-web-toolkit/generate-config@0.0.2': {}
 
   '@napi-rs/wasm-runtime@0.2.8':
     dependencies:
