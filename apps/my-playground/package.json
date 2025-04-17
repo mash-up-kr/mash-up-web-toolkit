@@ -10,7 +10,7 @@
     "cli": "node ../../packages/cli/command/dist/index.js"
   },
   "dependencies": {
-    "@mash-up-web-toolkit/command": "workspace:*",
+    "@mash-up-web-toolkit/command": "0.0.2",
     "axios": "^1.8.4",
     "next": "15.2.4",
     "react": "^19.0.0",
