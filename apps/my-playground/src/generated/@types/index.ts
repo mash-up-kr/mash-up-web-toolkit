@@ -9,6 +9,7 @@
  * ---------------------------------------------------------------
  */
 
+
 export interface ApiResponseType {
   /** @format int32 */
   code?: number;

@@ -9,9 +9,10 @@
  * ---------------------------------------------------------------
  */
 
+
 import instance from "@/configs/axios/instance";
-import { UserType } from "./data-contracts";
-import { ContentType, HttpClient, RequestParams } from "./http-client";
+import { ContentType, HttpClient, RequestParams } from "../@http-client";
+import { UserType } from "../@types";
 
 export class UserApi<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**

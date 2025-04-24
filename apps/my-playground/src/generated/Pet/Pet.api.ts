@@ -9,9 +9,10 @@
  * ---------------------------------------------------------------
  */
 
+
 import instance from "@/configs/axios/instance";
-import { ApiResponseType, PetType } from "./data-contracts";
-import { ContentType, HttpClient, RequestParams } from "./http-client";
+import { ContentType, HttpClient, RequestParams } from "../@http-client";
+import { ApiResponseType, PetType } from "../@types";
 
 export class PetApi<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**

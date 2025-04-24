@@ -10,10 +10,12 @@
  */
 
 import instance from "@/configs/axios/instance";
-import { OrderType } from "./data-contracts";
-import { ContentType, HttpClient, RequestParams } from "./http-client";
+import { ContentType, HttpClient, RequestParams } from "../@http-client";
+import { OrderType } from "../@types";
 
-export class StoreApi<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
+export class StoreApi<
+  SecurityDataType = unknown,
+> extends HttpClient<SecurityDataType> {
   /**
    * @description Returns a map of status codes to quantities
    *

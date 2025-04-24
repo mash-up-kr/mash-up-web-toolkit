@@ -8,9 +8,8 @@ import fs from "node:fs";
 
 export const generateSwaggerApi = async (params: GenerateApiParams) => {
   return await generateApi(params)
-    .then(() => {
-      console.log("✅ API 생성 완료! 🌈✨");
-      process.exit(0);
+    .then((generateApiOutput) => {
+      return generateApiOutput;
     })
     .catch((error) => {
       console.error("❌ API 생성 실패:", error);
@@ -18,7 +17,7 @@ export const generateSwaggerApi = async (params: GenerateApiParams) => {
     });
 };
 
-export const writeGeneratedApi = (
+export const writeGeneratedApi = async (
   result: GenerateApiOutput,
   outputPath: string
 ) => {
