@@ -1,6 +1,6 @@
 {
   "name": "@mash-up-web-toolkit/command",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "mash-up-web-toolkit command line interface",
   "author": "brightbong92",
   "license": "MIT",
@@ -37,8 +37,8 @@
     "dist"
   ],
   "dependencies": {
-    "@mash-up-web-toolkit/generate-api": "workspace:*",
-    "@mash-up-web-toolkit/generate-config": "workspace:*",
+    "@mash-up-web-toolkit/generate-api": "0.0.5",
+    "@mash-up-web-toolkit/generate-config": "0.0.4",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "esbuild": "^0.25.2",
