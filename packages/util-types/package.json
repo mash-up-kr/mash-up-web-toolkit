@@ -1,0 +1,30 @@
+{
+  "name": "@mash-up-web-toolkit/util-types",
+  "version": "0.0.1",
+  "description": "Utility types for Mash-Up Web Team",
+  "author": "brightbong92",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mash-up-kr/mash-up-web-toolkit.git",
+    "directory": "packages/util-types"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo"
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0",
+    "typescript": "latest"
+  }
+}
