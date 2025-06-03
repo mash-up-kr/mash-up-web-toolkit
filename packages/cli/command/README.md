@@ -11,7 +11,7 @@
 ## Use
 
 ```bash
-# CLI 도구 실행
+# pnpm
 pnpm mash-up-web
 
 # API 생성 명령어
@@ -20,4 +20,9 @@ pnpm mash-up-web gen:api --type axios || fetch
 
 # 설정 파일 생성 명령어
 pnpm mash-up-web gen:config
+
+#npm
+npx mash-up-web
+
+
 ```

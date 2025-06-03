@@ -1,6 +1,7 @@
 /**
  * @title 깊은 부분 타입
  * @description 객체의 모든 프로퍼티를 부분 타입으로 변환하는 타입
+ * 
  * @example
  * // 정상: 모든 필드가 optional
  * const obj1: DeepPartial<{ a: { b: string } }> = { a: { b: "test" } }; // OK

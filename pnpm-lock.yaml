@@ -144,6 +144,15 @@ importers:
         specifier: latest
         version: 5.8.3
 
+  packages/utils:
+    devDependencies:
+      tsup:
+        specifier: ^8.4.0
+        version: 8.4.0(@swc/core@1.11.20)(jiti@2.4.2)(postcss@8.5.3)(tsx@4.19.3)(typescript@5.8.3)
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+
 packages:
 
   '@alloc/quick-lru@5.2.0':
