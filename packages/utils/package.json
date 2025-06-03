@@ -1,0 +1,16 @@
+{
+  "name": "@mash-up-web-toolkit/utils",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "brightbong92",
+  "license": "MIT",
+  "description": "Utility functions for Mash-Up Web Team",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo"
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
+  }
+}
