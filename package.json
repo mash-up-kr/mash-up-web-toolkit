@@ -12,6 +12,8 @@
     "dev:cli": "pnpm build:cli && cd packages/cli/command && pnpm dev"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.4",
     "prettier": "^3.5.3",
     "turbo": "^2.4.4",
     "typescript": "5.8.2"

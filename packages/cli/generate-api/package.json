@@ -1,6 +1,6 @@
 {
   "name": "@mash-up-web-toolkit/generate-api",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "API client code generator used by @mash-up-web-toolkit/command",
   "type": "module",
   "author": "brightbong92",
@@ -24,7 +24,6 @@
   "files": [
     "dist"
   ],
-
   "devDependencies": {
     "@types/node": "^22.13.10",
     "tsup": "^8.4.0",
