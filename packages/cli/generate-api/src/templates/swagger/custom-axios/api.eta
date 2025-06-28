@@ -9,9 +9,6 @@ const routes = route.routes;
 const dataContracts = _.map(modelTypes, "name");
 const instanceName = route.moduleName + 'Api';
 
-const removeControllerKeyword = (str) => {
-  return str.split("Controller").join("");
-}
 %>
 
 <% if(route.moduleName !== 'health') { %> <% /* health check 제외*/ %>
@@ -42,6 +39,9 @@ export class <%= apiClassName %><SecurityDataType=unknown><% if (!config.singleH
         <% }) %>
         }
 
-export const <%= instanceName %> = new <%= apiClassName %>({instance});
+export const <%= instanceName %> = new <%= apiClassName %>({
+  ...instance.defaults,
+  headers: instance.defaults.headers as any,
+});
 
 <% }%>
