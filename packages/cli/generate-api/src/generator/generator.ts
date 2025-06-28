@@ -1,12 +1,10 @@
-import {
-  generateApi,
-  GenerateApiOutput,
-  GenerateApiParams,
-} from "swagger-typescript-api";
+import { generateApi } from "swagger-typescript-api";
 import path from "node:path";
 import fs from "node:fs";
 
-export const generateSwaggerApi = async (params: GenerateApiParams) => {
+export const generateSwaggerApi = async (
+  params: Parameters<typeof generateApi>[0]
+): ReturnType<typeof generateApi> => {
   return await generateApi(params)
     .then((generateApiOutput) => {
       return generateApiOutput;
@@ -18,10 +16,10 @@ export const generateSwaggerApi = async (params: GenerateApiParams) => {
 };
 
 export const writeGeneratedApi = async (
-  result: GenerateApiOutput,
+  result: Awaited<ReturnType<typeof generateApi>>,
   outputPath: string
 ) => {
-  const { files } = result;
+  const { files } = await result;
   files.forEach((element) => {
     const { fileName, fileContent } = element;
     const folderPath = getFolderPath(outputPath, fileName);
@@ -59,7 +57,7 @@ const commentTemplate = `/* eslint-disable */
  * ---------------------------------------------------------------
  * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
  * ##                                                           ##
- * ## AUTHOR: acacode                                           ##
+ * ## AUTHOR: brightbong                                        ##
  * ## SOURCE: https://github.com/acacode/swagger-typescript-api ##
  * ---------------------------------------------------------------
  */
