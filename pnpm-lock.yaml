@@ -73,8 +73,8 @@ importers:
   packages/cli/command:
     dependencies:
       '@mash-up-web-toolkit/generate-api':
-        specifier: 0.0.5
-        version: 0.0.5
+        specifier: 0.0.6
+        version: 0.0.6
       '@mash-up-web-toolkit/generate-config':
         specifier: 0.0.4
         version: 0.0.4
@@ -716,8 +716,8 @@ packages:
   '@manypkg/get-packages@1.1.3':
     resolution: {integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==}
 
-  '@mash-up-web-toolkit/generate-api@0.0.5':
-    resolution: {integrity: sha512-MjqDm5NTHg+/oe880mwtYDpBBUvk0Jb7pJ6/i7j3jNTQR3I8me4KbVf9KAGTuabgmF22yKfnOLO4mRUTr+UptQ==}
+  '@mash-up-web-toolkit/generate-api@0.0.6':
+    resolution: {integrity: sha512-h098xtjn6gwmNwoZIPZCD1gXKSTI65iJrJwwWTYw7qibJd584tSFRs/SoiDjU5rZ5iu4mu1tV48v/RAP8PTVjA==}
 
   '@mash-up-web-toolkit/generate-config@0.0.4':
     resolution: {integrity: sha512-s4uEoMR70oX32DF5C4xk5dasdZsuPY058wJnoQtTRuaJ6VtsZr4vsa8CNmJf65WndQNCzykCBW6Q5kGVhQvGkw==}
@@ -3675,7 +3675,7 @@ snapshots:
       globby: 11.1.0
       read-yaml-file: 1.1.0
 
-  '@mash-up-web-toolkit/generate-api@0.0.5':
+  '@mash-up-web-toolkit/generate-api@0.0.6':
     dependencies:
       swagger-typescript-api: 13.0.3
     transitivePeerDependencies:
