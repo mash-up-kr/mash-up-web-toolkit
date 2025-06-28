@@ -1,5 +1,12 @@
 # @mash-up-web-toolkit/command
 
+## 0.0.10
+
+### Patch Changes
+
+- Updated dependencies
+  - @mash-up-web-toolkit/generate-config@0.0.5
+
 ## 0.0.9
 
 ### Patch Changes
