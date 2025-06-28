@@ -1,5 +1,11 @@
 # my-playground
 
+## 0.1.5
+
+### Patch Changes
+
+- @mash-up-web-toolkit/command@0.0.10
+
 ## 0.1.4
 
 ### Patch Changes
