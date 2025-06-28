@@ -1,5 +1,11 @@
 # @mash-up-web-toolkit/generate-api
 
+## 0.0.9
+
+### Patch Changes
+
+- fix axios instance
+
 ## 0.0.8
 
 ### Patch Changes
