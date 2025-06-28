@@ -1,5 +1,11 @@
 # @mash-up-web-toolkit/generate-api
 
+## 0.0.8
+
+### Patch Changes
+
+- OAS 3.0에서 http-client 타입생성 버그 수정
+
 ## 0.0.7
 
 ### Patch Changes
