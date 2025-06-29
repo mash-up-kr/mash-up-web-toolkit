@@ -22,6 +22,13 @@ export const writeGeneratedApi = async (
   const { files } = await result;
   files.forEach((element) => {
     const { fileName, fileContent } = element;
+
+    console.log(`📄 ${fileName} 파일 내용 길이:`, fileContent.length);
+    console.log(
+      `📄 ${fileName} 파일 내용 미리보기:`,
+      fileContent.substring(0, 200)
+    );
+
     const folderPath = getFolderPath(outputPath, fileName);
 
     fs.mkdirSync(folderPath, { recursive: true });
