@@ -1,5 +1,11 @@
 # @mash-up-web-toolkit/generate-api
 
+## 0.0.10
+
+### Patch Changes
+
+- test fileContent debug
+
 ## 0.0.9
 
 ### Patch Changes
