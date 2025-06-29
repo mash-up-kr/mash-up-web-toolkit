@@ -1,5 +1,13 @@
 # @mash-up-web-toolkit/command
 
+## 0.0.11
+
+### Patch Changes
+
+- 설정 파일 로드 시 동적 모듈 형식 감지 기능 추가
+- Updated dependencies
+  - @mash-up-web-toolkit/generate-config@0.0.6
+
 ## 0.0.10
 
 ### Patch Changes
