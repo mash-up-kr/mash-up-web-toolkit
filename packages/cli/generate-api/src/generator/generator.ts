@@ -15,10 +15,15 @@ export const generateSwaggerApi = async (
     });
 };
 
-export const writeGeneratedApi = async (
-  result: Awaited<ReturnType<typeof generateApi>>,
-  outputPath: string
-) => {
+export const writeGeneratedApi = async ({
+  result,
+  outputPath,
+  httpClientRewrite,
+}: {
+  result: Awaited<ReturnType<typeof generateApi>>;
+  outputPath: string;
+  httpClientRewrite?: boolean;
+}) => {
   const { files } = await result;
   files.forEach((element) => {
     const { fileName, fileContent } = element;
@@ -32,7 +37,12 @@ export const writeGeneratedApi = async (
     const folderPath = getFolderPath(outputPath, fileName);
 
     fs.mkdirSync(folderPath, { recursive: true });
-    if (fileName === "http-client" || fileName === "data-contracts") {
+    if (fileName === "http-client") {
+      if (httpClientRewrite) {
+        createFile(path.resolve(folderPath, "index.ts"), fileContent);
+      }
+      return;
+    } else if (fileName === "data-contracts") {
       createFile(path.resolve(folderPath, "index.ts"), fileContent);
       return;
     }
@@ -64,7 +74,7 @@ const commentTemplate = `/* eslint-disable */
  * ---------------------------------------------------------------
  * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
  * ##                                                           ##
- * ## AUTHOR: brightbong                                        ##
+ * ## AUTHOR: brightbong92                                      ##
  * ## SOURCE: https://github.com/acacode/swagger-typescript-api ##
  * ---------------------------------------------------------------
  */

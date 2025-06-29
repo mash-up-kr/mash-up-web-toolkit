@@ -8,6 +8,7 @@ import { generateApi } from "swagger-typescript-api";
 import { generateConfig } from "./configs/generate-config.js";
 
 export type GenerateApiParamsType = {
+  httpClientRewrite?: boolean;
   httpClientType: "fetch" | "axios";
   instancePath?: string;
   url: string;
@@ -41,7 +42,11 @@ export const runGenerateApi = async (params: GenerateApiParamsType) => {
     },
   });
 
-  await writeGeneratedApi(result, path.resolve(process.cwd(), output))
+  await writeGeneratedApi({
+    result,
+    outputPath: path.resolve(process.cwd(), output),
+    httpClientRewrite: params.httpClientRewrite,
+  })
     .then(() => {
       console.log("✅ API 생성 완료! 🌈✨");
       process.exit(0);
