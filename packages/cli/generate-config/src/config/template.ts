@@ -1,4 +1,4 @@
-export const configTemplate = `import { MashupConfig } from '@mash-up-web-toolkit/command';
+export const configTemplate = `import type { MashupConfig } from '@mash-up-web-toolkit/command';
 
 const config: MashupConfig = {
   "gen:api": {
