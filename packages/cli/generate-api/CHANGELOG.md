@@ -1,5 +1,11 @@
 # @mash-up-web-toolkit/generate-api
 
+## 0.0.11
+
+### Patch Changes
+
+- remove comment
+
 ## 0.0.10
 
 ### Patch Changes
