@@ -94,11 +94,11 @@ importers:
         specifier: workspace:^
         version: link:../auto-routing
       '@mash-up-web-toolkit/generate-api':
-        specifier: 0.0.8
-        version: 0.0.8
+        specifier: 0.0.9
+        version: 0.0.9
       '@mash-up-web-toolkit/generate-config':
-        specifier: 0.0.4
-        version: 0.0.4
+        specifier: 0.0.6
+        version: 0.0.6
       chalk:
         specifier: ^5.4.1
         version: 5.4.1
@@ -878,11 +878,11 @@ packages:
   '@manypkg/get-packages@1.1.3':
     resolution: {integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==}
 
-  '@mash-up-web-toolkit/generate-api@0.0.8':
-    resolution: {integrity: sha512-6fiyvTRLnlwA9IqXe8Xt7on6JiaQ6M0lBoda3ZsOzXoYzE+aZ1croGBFJzvihj+iMjpM7PpsfWgRe3jrW1pvoA==}
+  '@mash-up-web-toolkit/generate-api@0.0.9':
+    resolution: {integrity: sha512-dA8p5JXyzwJtzjqnuOAWFFHL9RAuobHl1ZQwU8BnFM/d5QsP733TfYip5Ef9u7okVUN1RDemF3LaefR6roRp/w==}
 
-  '@mash-up-web-toolkit/generate-config@0.0.4':
-    resolution: {integrity: sha512-s4uEoMR70oX32DF5C4xk5dasdZsuPY058wJnoQtTRuaJ6VtsZr4vsa8CNmJf65WndQNCzykCBW6Q5kGVhQvGkw==}
+  '@mash-up-web-toolkit/generate-config@0.0.6':
+    resolution: {integrity: sha512-qXDUOTaOEWx79mvEN2+n9A02qDLJtAY4uTQdCRG1Qvz90Xvpxn1UEZvfC2jhS/GDsnHYLnD3Sidc7aRWqEHLOw==}
 
   '@napi-rs/wasm-runtime@0.2.8':
     resolution: {integrity: sha512-OBlgKdX7gin7OIq4fadsjpg+cp2ZphvAIKucHsNfTdJiqdOmOEwQd/bHi0VwNrcw5xpBJyUw6cK/QilCqy1BSg==}
@@ -4093,13 +4093,13 @@ snapshots:
       globby: 11.1.0
       read-yaml-file: 1.1.0
 
-  '@mash-up-web-toolkit/generate-api@0.0.8':
+  '@mash-up-web-toolkit/generate-api@0.0.9':
     dependencies:
       swagger-typescript-api: 13.0.3
     transitivePeerDependencies:
       - encoding
 
-  '@mash-up-web-toolkit/generate-config@0.0.4': {}
+  '@mash-up-web-toolkit/generate-config@0.0.6': {}
 
   '@napi-rs/wasm-runtime@0.2.8':
     dependencies:
