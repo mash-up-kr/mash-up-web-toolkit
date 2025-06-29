@@ -22,7 +22,7 @@ import { <%=instanceName%> } from './<%=pascalCase(route.moduleName)%>.api';
 import instance from "<%~ instancePath%>";
 import { HttpClient, RequestParams, ContentType, HttpResponse } from "../@<%~ config.fileNames.httpClient %>";
 <% if (dataContracts.length) { %>
-import { <%~ dataContracts.join(", ") %> } from "../@types"
+import type { <%~ dataContracts.join(", ") %> } from "../@types"
 <% } %>
 
 export class <%= apiClassName %><SecurityDataType=unknown><% if (!config.singleHttpClient) { %> extends HttpClient<SecurityDataType> <% } %> {

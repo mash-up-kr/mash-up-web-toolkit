@@ -16,6 +16,11 @@ const config: MashupConfig = {
      * @description fetch 또는 axios 인스턴스 경로
      */
     instancePath: "@/configs/axios/instance",
+
+    /**
+     * @description httpClient 덮어쓰기 여부 (true: 덮어쓰기, false: 기존 파일 사용)
+     */
+    httpClientRewrite: true,
   },
 };
 
