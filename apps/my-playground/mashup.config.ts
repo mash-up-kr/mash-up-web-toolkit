@@ -5,7 +5,7 @@ const config: MashupConfig = {
     /**
      * @description 생성될 파일의 경로
      */
-    output: "./src/generated",
+    output: "./src/__generated__",
 
     /**
      * @description 생성할 API의 주소
