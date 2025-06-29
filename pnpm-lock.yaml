@@ -30,7 +30,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/cli/command
       axios:
-        specifier: ^1.8.4
+        specifier: ^1.10.0
         version: 1.10.0
       next:
         specifier: 15.2.4
