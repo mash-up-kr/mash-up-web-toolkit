@@ -1,5 +1,11 @@
 # @mash-up-web-toolkit/generate-api
 
+## 0.0.12
+
+### Patch Changes
+
+- writeGeneratedApi 함수에 httpClientRewrite 옵션을 추가했습니다.
+
 ## 0.0.11
 
 ### Patch Changes
