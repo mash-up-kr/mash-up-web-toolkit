@@ -38,6 +38,7 @@
     "dist"
   ],
   "dependencies": {
+    "@mash-up-web-toolkit/eslint-config": "workspace:*",
     "@mash-up-web-toolkit/generate-api": "0.0.13",
     "@mash-up-web-toolkit/generate-config": "0.0.8",
     "chalk": "^5.4.1",
