@@ -1,6 +1,6 @@
 {
   "name": "@mash-up-web-toolkit/generate-config",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Create config for @mash-up-web-toolkit/command",
   "author": "brightbong92",
   "license": "MIT",
