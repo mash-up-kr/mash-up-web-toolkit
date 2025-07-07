@@ -1,5 +1,11 @@
 # @mash-up-web-toolkit/generate-api
 
+## 0.0.13
+
+### Patch Changes
+
+- Axios Template 수정
+
 ## 0.0.12
 
 ### Patch Changes
