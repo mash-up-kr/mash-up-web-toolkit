@@ -39,6 +39,6 @@ export class <%= apiClassName %><SecurityDataType=unknown><% if (!config.singleH
         <% }) %>
         }
 
-export const <%= instanceName %> = new <%= apiClassName %>({ adapter: instance.defaults.adapter });
+export const <%= instanceName %> = new <%= apiClassName %>({ instance });
 
 <% }%>

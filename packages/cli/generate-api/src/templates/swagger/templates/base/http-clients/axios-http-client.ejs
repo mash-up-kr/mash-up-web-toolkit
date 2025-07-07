@@ -28,6 +28,7 @@ export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequest
   securityWorker?: (securityData: SecurityDataType | null) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
+  instance?: AxiosInstance;
 }
 
 export enum ContentType {
@@ -45,8 +46,8 @@ export class HttpClient<SecurityDataType = unknown> {
     private secure?: boolean;
     private format?: ResponseType;
 
-    constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-        this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "<%~ apiConfig.baseUrl %>" })
+    constructor({ instance, securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
+        this.instance = instance || axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "<%~ apiConfig.baseUrl %>" })
         this.secure = secure;
         this.format = format;
         this.securityWorker = securityWorker;
