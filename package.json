@@ -15,7 +15,8 @@
     "publish:util-types": "cd packages/util-types && pnpm publish",
     "publish:utils": "cd packages/utils && pnpm publish",
     "publish:all": "pnpm publish:cli && pnpm publish:util-types && pnpm publish:utils",
-    "changeset": "npx changeset"
+    "changeset": "npx changeset",
+    "changeset:version": "npx changeset version --dry-run"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",

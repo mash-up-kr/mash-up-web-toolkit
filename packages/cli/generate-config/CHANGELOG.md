@@ -1,5 +1,11 @@
 # @mash-up-web-toolkit/generate-config
 
+## 0.0.8
+
+### Patch Changes
+
+- Axios Template 수정
+
 ## 0.0.7
 
 ### Patch Changes

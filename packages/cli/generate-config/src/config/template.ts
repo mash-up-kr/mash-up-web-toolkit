@@ -8,7 +8,8 @@ const config: MashupConfig = {
     output: "./src/__generated__",
 
     /**
-     * @description 생성할 API의 주소
+     * @description 생성할 API의 OpenAPI 문서 주소
+     * 예시: https://petstore3.swagger.io/api/v3/openapi.json
      */
     url: "주소를 입력해주세요.",
 
