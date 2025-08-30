@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "tsup": "^8.4.0",
+    "@mash-up-web-toolkit/eslint-config": "workspace:*",
     "typescript": "^5.8.3"
   }
 }
