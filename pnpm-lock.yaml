@@ -90,12 +90,15 @@ importers:
 
   packages/cli/command:
     dependencies:
+      '@mash-up-web-toolkit/eslint-config':
+        specifier: workspace:*
+        version: link:../../eslint-config
       '@mash-up-web-toolkit/generate-api':
-        specifier: 0.0.12
-        version: 0.0.12
+        specifier: 0.0.13
+        version: 0.0.13
       '@mash-up-web-toolkit/generate-config':
-        specifier: 0.0.7
-        version: 0.0.7
+        specifier: 0.0.8
+        version: 0.0.8
       chalk:
         specifier: ^5.4.1
         version: 5.4.1
@@ -131,6 +134,9 @@ importers:
         specifier: 13.0.3
         version: 13.0.3
     devDependencies:
+      '@mash-up-web-toolkit/eslint-config':
+        specifier: workspace:*
+        version: link:../../eslint-config
       '@types/node':
         specifier: ^22.13.10
         version: 22.14.0
@@ -146,6 +152,9 @@ importers:
 
   packages/cli/generate-config:
     devDependencies:
+      '@mash-up-web-toolkit/eslint-config':
+        specifier: workspace:*
+        version: link:../../eslint-config
       '@types/node':
         specifier: ^22.13.10
         version: 22.14.0
@@ -191,6 +200,9 @@ importers:
 
   packages/util-types:
     devDependencies:
+      '@mash-up-web-toolkit/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
       tsup:
         specifier: ^8.4.0
         version: 8.4.0(@swc/core@1.11.20(@swc/helpers@0.5.15))(jiti@2.4.2)(postcss@8.5.3)(tsx@4.19.3)(typescript@5.8.3)(yaml@1.10.2)
@@ -947,11 +959,11 @@ packages:
   '@manypkg/get-packages@1.1.3':
     resolution: {integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==}
 
-  '@mash-up-web-toolkit/generate-api@0.0.12':
-    resolution: {integrity: sha512-zqwipBidxhlmZr2M4YITq58OdoKmXZzAOWzh4co4KwqBoJSuQtR0hjD/ZoMY/M0yHUCVRx+DoN+/4clIM4aPgQ==}
+  '@mash-up-web-toolkit/generate-api@0.0.13':
+    resolution: {integrity: sha512-eEHDxYChZITNWytqQ+x5ICK4rgtbLGHNsiMi7VNthoAsPtlt5vq0lIyYmjOzOGZvdIuFs0DlmZ1Bc2nnPyNELA==}
 
-  '@mash-up-web-toolkit/generate-config@0.0.7':
-    resolution: {integrity: sha512-Zo1l0OGc27sjvPqgH/QbnsFQcDmPgZlO3yKthSqUZRA5rQjS3ppeTyZOj1BGcZgj8GebAFJ26zs3yRCDLCTVrw==}
+  '@mash-up-web-toolkit/generate-config@0.0.8':
+    resolution: {integrity: sha512-miGHW6dtBvnsGE73wnoYffeCT5C/MEHqb35ZKBJBTswjmInFC1y+mTXRsH7IbcxBcYb5HYkdrkKrzyKuB4WHtQ==}
 
   '@napi-rs/wasm-runtime@0.2.11':
     resolution: {integrity: sha512-9DPkXtvHydrcOsopiYpUgPHpmj0HWZKMUnL2dZqpvC42lsratuBG06V5ipyno0fUek5VlFsNQ+AcFATSrJXgMA==}
@@ -4515,13 +4527,13 @@ snapshots:
       globby: 11.1.0
       read-yaml-file: 1.1.0
 
-  '@mash-up-web-toolkit/generate-api@0.0.12':
+  '@mash-up-web-toolkit/generate-api@0.0.13':
     dependencies:
       swagger-typescript-api: 13.0.3
     transitivePeerDependencies:
       - encoding
 
-  '@mash-up-web-toolkit/generate-config@0.0.7': {}
+  '@mash-up-web-toolkit/generate-config@0.0.8': {}
 
   '@napi-rs/wasm-runtime@0.2.11':
     dependencies:
@@ -6865,7 +6877,7 @@ snapshots:
 
   postcss@8.4.31:
     dependencies:
-      nanoid: 3.3.6
+      nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
