@@ -4,14 +4,13 @@ import * as path from 'node:path';
 import { axiosTemplate, fetchTemplate } from './config/template.js';
 
 export const initHttpClientConfig = (httpClientType: 'fetch' | 'axios') => {
-  const outputPath: string = './src/configs/__generated__';
-
-  const configPath = path.resolve(
-    process.cwd(),
-    `${outputPath}/${httpClientType}`,
-    `instance.ts`
+  const outputPath = path.join(
+    'src',
+    'configs',
+    '__generated__',
+    httpClientType
   );
-
+  const configPath = path.resolve(process.cwd(), outputPath, `instance.ts`);
   const dirPath = path.dirname(configPath);
 
   if (fs.existsSync(configPath)) {
