@@ -14,6 +14,11 @@ export const initHttpClientConfig = (httpClientType: 'fetch' | 'axios') => {
 
   const dirPath = path.dirname(configPath);
 
+  if (fs.existsSync(configPath)) {
+    console.log('⚠️ instance.ts 파일이 이미 존재합니다.', configPath);
+    return;
+  }
+
   try {
     fs.mkdirSync(dirPath, { recursive: true });
   } catch (error) {
