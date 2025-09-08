@@ -1,18 +1,39 @@
 # Auto Configuration
 
+패키지를 설치하세요.
+
 ```bash
 pnpm install @mash-up-web-toolkit/command
 ```
 
-run with command
+CLI를 실행합니다.
 
 ```bash
+# pnpm
 pnpm mash-up-web
+```
+
+```bash
+# npm
+npx mash-up-web
+```
+
+```bash
+# yarn
+yarn mash-up-web
+
+# package.json
+...
+script:{
+  ...
+  mash-up-web: ./node_modules/.bin/mash-up-web
+  ...
+}
 ```
 
 gen:config 를 선택하세요. Configuration File이 생성됩니다.
 
-이미 존재할 경우 생성되지 않습니다.
+⚠️ 이미 존재할 경우 생성되지 않습니다.
 
 ![Gen Config](./img/mash-up-web-cli-gen-config.png)
 

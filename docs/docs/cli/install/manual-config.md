@@ -4,9 +4,11 @@
 pnpm install @mash-up-web-toolkit/command
 ```
 
-아래의 코드를 복사해 `mashup.config.ts` 파일을 생성하새요.
+`mashup.config.ts` 파일을 프로젝트 최상위 경로에 생성하새요.
 
 ```ts
+// mashup.config.ts
+
 import type { MashupConfig } from '@mash-up-web-toolkit/command';
 
 const config: MashupConfig = {
