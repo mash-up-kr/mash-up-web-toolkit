@@ -29,7 +29,7 @@ yarn add @mash-up-web-toolkit/command
   </TabItem>
 </Tabs>
 
-# 2. 실행
+## 2. 실행
 
 <Tabs groupId="package-managers">
   <TabItem value="pnpm2" label="pnpm" default>
