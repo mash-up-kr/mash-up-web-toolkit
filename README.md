@@ -1,3 +1,5 @@
+<img width="687" height="95" alt="스크린샷 2025-09-08 오후 8 25 36" src="https://github.com/user-attachments/assets/c68aa3d0-aa52-4629-9e6d-12c7872abb21" />
+
 # Mash-Up Web Toolkit
 
 > Mash-Up 웹팀의 반복적인 개발 작업을 자동화하고 개선하는 도구 모음
