@@ -1,32 +1,33 @@
-import figlet from "figlet";
-import inquirer from "inquirer";
-import { Command } from "commander";
-import { Controller } from "@/controller/controller.js";
-import { commandFactory } from "@/controller/command-factory.js";
+import { Command } from 'commander';
+import figlet from 'figlet';
+import inquirer from 'inquirer';
+
+import { commandFactory } from '@/controller/command-factory.js';
+import { Controller } from '@/controller/controller.js';
 
 // config 모듈 내보내기
-export type { MashupConfig } from "./types/types.js";
+export type { MashupConfig } from './types/types.js';
 
 const controller = new Controller();
 
 export const welcome = () => {
-  console.log(figlet.textSync("Mash-Up Web CLI"));
+  console.log(figlet.textSync('Mash-Up Web CLI'));
 };
 
 export const runPrompt = async () => {
-  const choices = ["gen:config", "gen:api"];
+  const choices = ['gen:config', 'gen:api-config', 'gen:api'];
 
   inquirer
     .prompt([
       {
-        name: "command",
-        type: "list",
-        message: "명령을 선택해주세요.",
+        name: 'command',
+        type: 'list',
+        message: '명령을 선택해주세요.',
         choices,
         default: choices[0],
       },
     ])
-    .then((answers) => {
+    .then(answers => {
       commandFactory.executeCommand(answers.command, controller);
     });
 };
@@ -36,28 +37,36 @@ export const main = async () => {
 
   const program = new Command();
   program
-    .name("mash-up")
-    .description("Mash-Up Web Toolkit CLI")
-    .version("0.0.1");
+    .name('mash-up')
+    .description('Mash-Up Web Toolkit CLI')
+    .version('0.0.1');
 
   program
-    .command("gen:api")
-    .description("API 코드를 생성합니다")
+    .command('gen:api')
+    .description('API 코드를 생성합니다')
     .option(
-      "-t, --type <type>",
-      "HTTP 클라이언트 타입 (fetch 또는 axios)",
-      "fetch"
+      '-t, --type <type>',
+      'HTTP 클라이언트 타입 (fetch 또는 axios)',
+      'fetch'
     )
-    .action(async (options) => {
-      const httpClientType = options.type as "fetch" | "axios";
+    .action(async options => {
+      const httpClientType = options.type as 'fetch' | 'axios';
       await controller.genApi({ httpClientType });
     });
 
   program
-    .command("gen:config")
-    .description("설정 파일을 생성합니다")
+    .command('gen:config')
+    .description('설정 파일을 생성합니다')
     .action(async () => {
       await controller.initConfig();
+    });
+
+  program
+    .command('gen:api-config')
+    .description('API instance 파일을 생성합니다')
+    .action(async options => {
+      const httpClientType = options.type as 'fetch' | 'axios';
+      await controller.initApiConfig({ httpClientType });
     });
 
   if (process.argv.length <= 2) {

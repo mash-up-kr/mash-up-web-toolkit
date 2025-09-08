@@ -1,16 +1,18 @@
-import { loadConfig } from "@/config/index.js";
-import { runGenerateApi } from "@mash-up-web-toolkit/generate-api";
-import { initConfig as initializeConfig } from "@mash-up-web-toolkit/generate-config";
+import { runGenerateApi } from '@mash-up-web-toolkit/generate-api';
+import { initHttpClientConfig } from '@mash-up-web-toolkit/generate-api-config';
+import { initConfig as initializeConfig } from '@mash-up-web-toolkit/generate-config';
+
+import { loadConfig } from '@/config/index.js';
 
 export type GenApiParams = {
-  httpClientType: "fetch" | "axios";
+  httpClientType: 'fetch' | 'axios';
 };
 export class Controller {
   constructor() {}
 
   async genApi(params: GenApiParams) {
     const result = await loadConfig();
-    const genApiConfig = result["gen:api"];
+    const genApiConfig = result['gen:api'];
     await runGenerateApi({
       httpClientType: params.httpClientType,
       ...genApiConfig,
@@ -19,5 +21,9 @@ export class Controller {
 
   async initConfig() {
     initializeConfig();
+  }
+
+  async initApiConfig(params: GenApiParams) {
+    initHttpClientConfig(params.httpClientType);
   }
 }
