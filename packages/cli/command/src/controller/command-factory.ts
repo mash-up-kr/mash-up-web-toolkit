@@ -1,6 +1,7 @@
-import inquirer from "inquirer";
-import { Controller } from "@/controller/controller.js";
-import type { RunAutoRoutingOptions } from "@mash-up-web-toolkit/auto-routing";
+import inquirer from 'inquirer';
+
+import { Controller } from '@/controller/controller.js';
+import type { RunAutoRoutingOptions } from '@mash-up-web-toolkit/auto-routing';
 
 export interface CommandHandler {
   execute(controller: Controller): Promise<void>;
@@ -10,9 +11,10 @@ class CommandFactory {
   private handlers: Record<string, CommandHandler> = {};
 
   constructor() {
-    this.register("gen:routes", new GenRoutesCommandHandler());
-    this.register("gen:api", new GenApiCommandHandler());
-    this.register("gen:config", new GenConfigCommandHandler());
+    this.register('gen:routes', new GenRoutesCommandHandler());
+    this.register('gen:api', new GenApiCommandHandler());
+    this.register('gen:config', new GenConfigCommandHandler());
+    this.register('gen:api-config', new GenApiConfigCommandHandler());
   }
 
   register(command: string, handler: CommandHandler) {
@@ -45,18 +47,34 @@ class GenRoutesCommandHandler implements CommandHandler {
   }
 }
 
+class GenApiConfigCommandHandler implements CommandHandler {
+  async execute(controller: Controller): Promise<void> {
+    const { command } = await inquirer.prompt([
+      {
+        name: 'command',
+        type: 'list',
+        message: 'HTTP 클라이언트를 선택해주세요',
+        choices: ['fetch', 'axios'],
+        default: 'fetch',
+      },
+    ]);
+    const httpClientType = command as 'fetch' | 'axios';
+    await controller.initApiConfig({ httpClientType });
+  }
+}
+
 class GenApiCommandHandler implements CommandHandler {
   async execute(controller: Controller): Promise<void> {
     const { command } = await inquirer.prompt([
       {
-        name: "command",
-        type: "list",
-        message: "HTTP 클라이언트를 선택해주세요",
-        choices: ["fetch", "axios"],
-        default: "fetch",
+        name: 'command',
+        type: 'list',
+        message: 'HTTP 클라이언트를 선택해주세요',
+        choices: ['fetch', 'axios'],
+        default: 'fetch',
       },
     ]);
-    const httpClientType = command as "fetch" | "axios";
+    const httpClientType = command as 'fetch' | 'axios';
     await controller.genApi({
       httpClientType,
     });

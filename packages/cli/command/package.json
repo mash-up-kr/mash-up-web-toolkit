@@ -41,6 +41,7 @@
     "@mash-up-web-toolkit/eslint-config": "workspace:*",
     "@mash-up-web-toolkit/generate-api": "0.0.13",
     "@mash-up-web-toolkit/generate-config": "0.0.8",
+    "@mash-up-web-toolkit/generate-api-config": "workspace:*",
     "@mash-up-web-toolkit/auto-routing": "0.0.1",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",

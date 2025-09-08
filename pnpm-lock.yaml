@@ -115,6 +115,9 @@ importers:
       '@mash-up-web-toolkit/generate-api':
         specifier: 0.0.13
         version: 0.0.13
+      '@mash-up-web-toolkit/generate-api-config':
+        specifier: workspace:*
+        version: link:../generate-api-config
       '@mash-up-web-toolkit/generate-config':
         specifier: 0.0.8
         version: 0.0.8
