@@ -1,5 +1,3 @@
-<img width="687" height="95" alt="스크린샷 2025-09-08 오후 8 25 36" src="https://github.com/user-attachments/assets/c68aa3d0-aa52-4629-9e6d-12c7872abb21" />
-
 # Mash-Up Web Toolkit
 
 > Mash-Up 웹팀의 반복적인 개발 작업을 자동화하고 개선하는 도구 모음
@@ -17,6 +15,8 @@
 ## 📦 도구 구성
 
 ### 🛠️ 개발 자동화 도구
+
+<img width="687" height="95" alt="스크린샷 2025-09-08 오후 8 25 36" src="https://github.com/user-attachments/assets/c68aa3d0-aa52-4629-9e6d-12c7872abb21" />
 
 - [`@mash-up-web-toolkit/command`](./packages/cli/command) - 통합 CLI 인터페이스
 - [`@mash-up-web-toolkit/generate-api`](./packages/cli/generate-api) - API 클라이언트 코드 자동 생성
