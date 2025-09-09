@@ -1,8 +1,9 @@
+import { Command } from 'commander';
 import figlet from 'figlet';
 import inquirer from 'inquirer';
-import { Command } from 'commander';
-import { Controller } from '@/controller/controller.js';
+
 import { commandFactory } from '@/controller/command-factory.js';
+import { Controller } from '@/controller/controller.js';;
 import type { RunAutoRoutingOptions } from '@mash-up-web-toolkit/auto-routing';
 
 // config 모듈 내보내기
@@ -10,7 +11,7 @@ export type { MashupConfig } from './types/types.js';
 
 const controller = new Controller();
 
-export const welcome = () => {
+export const welcome = (): void => {
   console.log(figlet.textSync('Mash-Up Web CLI'));
 };
 
@@ -32,22 +33,7 @@ export const runPrompt = async () => {
     });
 };
 
-export const main = async () => {
-  welcome();
-
-  const program = new Command();
-  setupCliCommands(program);
-
-  if (process.argv.length <= 2) {
-    runInteractiveMode();
-  } else {
-    program.parse(process.argv);
-  }
-};
-
-main();
-
-export const setupCliCommands = (program: Command) => {
+export const setupCliCommands = async (program: Command): Promise<void> => {
   program
     .name('mash-up')
     .description('Mash-Up Web Toolkit CLI')
@@ -124,3 +110,18 @@ export const runInteractiveMode = async () => {
       commandFactory.executeCommand(answers.command, controller);
     });
 };
+
+export const main = async () => {
+  welcome();
+
+  const program = new Command();
+  setupCliCommands(program);
+
+  if (process.argv.length <= 2) {
+    runInteractiveMode();
+  } else {
+    program.parse(process.argv);
+  }
+};
+
+main();
