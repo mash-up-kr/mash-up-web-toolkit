@@ -1,9 +1,12 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-import { axiosTemplate, fetchTemplate } from './config/template.js';
+import {
+  axiosInstanceTemplate as fetchInstance,
+  fetchInstanceTemplate as axiosInstance,
+} from './config/template.js';
 
-export const initHttpClientConfig = (httpClientType: 'fetch' | 'axios') => {
+export const initApiInstanceConfig = (httpClientType: 'fetch' | 'axios') => {
   const outputPath = path.join(
     'src',
     'configs',
@@ -25,7 +28,7 @@ export const initHttpClientConfig = (httpClientType: 'fetch' | 'axios') => {
     return;
   }
 
-  const template = httpClientType === 'fetch' ? fetchTemplate : axiosTemplate;
+  const template = httpClientType === 'fetch' ? fetchInstance : axiosInstance;
 
   try {
     fs.writeFileSync(configPath, template, 'utf-8');

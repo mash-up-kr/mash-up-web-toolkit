@@ -1,5 +1,5 @@
 import { runGenerateApi } from '@mash-up-web-toolkit/generate-api';
-import { initHttpClientConfig } from '@mash-up-web-toolkit/generate-api-config';
+import { initApiInstanceConfig } from '@mash-up-web-toolkit/generate-api-config';
 import { initConfig as initializeConfig } from '@mash-up-web-toolkit/generate-config';
 
 import { loadConfig } from '@/config/index.js';
@@ -24,6 +24,6 @@ export class Controller {
   }
 
   async initApiConfig(params: GenApiParams) {
-    initHttpClientConfig(params.httpClientType);
+    initApiInstanceConfig(params.httpClientType);
   }
 }
