@@ -1,4 +1,4 @@
-export const fetchTemplate = `/**
+export const fetchInstanceTemplate = `/**
  * Custom Fetch Instance
  * 
  * @description fetch API를 확장한 커스텀 HTTP 클라이언트
@@ -80,7 +80,7 @@ export default customFetch;
 
 `;
 
-export const axiosTemplate = `/**
+export const axiosInstanceTemplate = `/**
  * Axios Instance
  * 
  * @description axios 기반 HTTP 클라이언트 인스턴스

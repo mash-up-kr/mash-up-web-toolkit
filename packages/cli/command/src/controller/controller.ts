@@ -1,6 +1,6 @@
 import { loadConfig } from "@/config/index.js";
 import { runGenerateApi } from "@mash-up-web-toolkit/generate-api";
-import { initHttpClientConfig } from '@mash-up-web-toolkit/generate-api-config';
+import { initApiInstanceConfig } from '@mash-up-web-toolkit/generate-api-config';
 import {
   runAutoRouting,
   type RunAutoRoutingOptions,
@@ -31,6 +31,6 @@ export class Controller {
   }
 
   async initApiConfig(params: GenApiParams) {
-    initHttpClientConfig(params.httpClientType);
+    initApiInstanceConfig(params.httpClientType);
   }
 }
