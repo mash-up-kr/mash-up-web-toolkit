@@ -5,10 +5,9 @@
 ## Install
 
 ```bash
-npm install @mash-up-web-toolkit/util-types
+npm install -D @mash-up-web-toolkit/util-types
 # or
-yarn add @mash-up-web-toolkit/util-types
+yarn add -D @mash-up-web-toolkit/util-types
 # or
 pnpm add @mash-up-web-toolkit/util-types
 ```
-
