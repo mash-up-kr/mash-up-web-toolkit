@@ -9,21 +9,21 @@ import TabItem from '@theme/TabItem';
   <TabItem value="pnpm" label="pnpm" default>
 
 ```bash
-pnpm install @mash-up-web-toolkit/command
+pnpm install -D @mash-up-web-toolkit/command
 ```
 
   </TabItem>
   <TabItem value="npm" label="npm">
 
 ```bash
-npm install @mash-up-web-toolkit/command
+npm install -D @mash-up-web-toolkit/command
 ```
 
   </TabItem>
   <TabItem value="yarn" label="yarn">
 
 ```bash
-yarn add @mash-up-web-toolkit/command
+yarn add -D @mash-up-web-toolkit/command
 ```
 
   </TabItem>
@@ -80,19 +80,22 @@ yarn mash-up-web
 
 CLI를 실행하면 대화형 인터페이스가 나타납니다:
 
-![Gen Config](./img/mash-up-web-cli-gen-config.png)
+```
+? 명령을 선택해주세요. (Use arrow keys)
+❯ gen:config
+  gen:api-config
+  gen:api
+```
 
-### 선택 옵션
-
-- **`gen:config`**: 프로젝트 설정 파일(`mashup.config.ts`) 생성
-
-**첫 사용 시에는 반드시 `gen:config`를 먼저 선택하세요.**
-
-### 생성되는 파일
+**`gen:config`**를 선택하세요.
 
 `mashup.config.ts` 파일이 프로젝트 루트에 생성됩니다.
 
 :::warning 중요
+**`mashup.config.ts`가 없을 시 동작에 제한이 있을수 있습니다.**
+:::
+
+:::info
 이미 파일이 존재할 경우 덮어쓰지 않습니다. 기존 설정을 유지합니다.
 :::
 

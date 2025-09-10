@@ -9,21 +9,21 @@ import TabItem from '@theme/TabItem';
   <TabItem value="pnpm1" label="pnpm" default>
 
 ```bash
-pnpm install @mash-up-web-toolkit/command
+pnpm install -D @mash-up-web-toolkit/command
 ```
 
   </TabItem>
   <TabItem value="npm1" label="npm">
 
 ```bash
-npm install @mash-up-web-toolkit/command
+npm install -D @mash-up-web-toolkit/command
 ```
 
   </TabItem>
   <TabItem value="yarn1" label="yarn">
 
 ```bash
-yarn add @mash-up-web-toolkit/command
+yarn add -D @mash-up-web-toolkit/command
 ```
 
   </TabItem>
