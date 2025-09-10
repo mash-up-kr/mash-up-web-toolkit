@@ -4,4 +4,4 @@
 
 ## documentation
 
-- [시작하기](https://mash-up-web-toolkit-docs.vercel.app/docs/cli/generate-api/generate-api-config)
+-[시작하기](https://mash-up-web-toolkit-docs.vercel.app/docs/cli/generate-api/generate-api-config)

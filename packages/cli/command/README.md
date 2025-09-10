@@ -10,6 +10,7 @@
 ## Related Dependencies
 
 - [@mash-up-web-toolkit/generate-api](https://www.npmjs.com/package/@mash-up-web-toolkit/generate-api) - API 생성 기능 제공
+- [@mash-up-web-toolkit/generate-api-config](https://www.npmjs.com/package/@mash-up-web-toolkit/generate-api-config) - API 생성 instance 파일 제공
 - [@mash-up-web-toolkit/generate-config](https://www.npmjs.com/package/@mash-up-web-toolkit/generate-config) - 설정 파일 생성 기능 제공
 
 ## Usage
