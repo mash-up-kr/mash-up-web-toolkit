@@ -1,0 +1,30 @@
+{
+  "name": "@mash-up-web-toolkit/generate-api-config",
+  "version": "0.0.1",
+  "description": "Generate API config File for @mash-up-web-toolkit/generate-api",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mash-up-kr/mash-up-web-toolkit.git",
+    "directory": "packages/cli/generate-api-config"
+  },
+  "author": "brightbong92",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo"
+  },
+  "devDependencies": {
+    "@mash-up-web-toolkit/eslint-config": "workspace:*",
+    "@types/node": "^22.13.10",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.3",
+    "typescript": "latest"
+  }
+}
