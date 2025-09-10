@@ -6,21 +6,21 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="package-managers">
-  <TabItem value="pnpm1" label="pnpm" default>
+  <TabItem value="pnpm" label="pnpm" default>
 
 ```bash
 pnpm install @mash-up-web-toolkit/command
 ```
 
   </TabItem>
-  <TabItem value="npm1" label="npm">
+  <TabItem value="npm" label="npm">
 
 ```bash
 npm install @mash-up-web-toolkit/command
 ```
 
   </TabItem>
-  <TabItem value="yarn1" label="yarn">
+  <TabItem value="yarn" label="yarn">
 
 ```bash
 yarn add @mash-up-web-toolkit/command
@@ -32,7 +32,7 @@ yarn add @mash-up-web-toolkit/command
 ## 2. CLI 실행
 
 <Tabs groupId="package-managers">
-  <TabItem value="pnpm2" label="pnpm" default>
+  <TabItem value="pnpm" label="pnpm" default>
 
 ```bash
 pnpm mash-up-web
@@ -43,7 +43,7 @@ pnpm은 `node_modules/.bin` 경로를 자동으로 인식합니다.
 :::
 
   </TabItem>
-  <TabItem value="npm2" label="npm">
+  <TabItem value="npm" label="npm">
 
 ```bash
 npx mash-up-web
@@ -54,7 +54,7 @@ npx는 로컬에 설치된 패키지를 자동으로 찾아 실행합니다.
 :::
 
   </TabItem>
-  <TabItem value="yarn2" label="yarn">
+  <TabItem value="yarn" label="yarn">
 
 **package.json 스크립트 추가**
 
