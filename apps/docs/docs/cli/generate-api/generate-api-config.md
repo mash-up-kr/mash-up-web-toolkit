@@ -50,13 +50,26 @@ yarn mash-up-web
 
 ### Instance 파일 생성
 
-CLI를 실행하면 대화형 인터페이스가 나타납니다:
+CLI를 실행하면 다음과 같은 메뉴가 나타납니다:
 
-![Gen Config](./img/mash-up-web-cli-gen-config.png)
+```
+? 명령을 선택해주세요. (Use arrow keys)
+  gen:config
+❯ gen:api-config
+  gen:api
+```
 
-### 선택 옵션
+- **`gen:api-config`**를 선택하세요.
 
-- **`gen:api-config`**: API 인스턴스 설정 파일(`instance.ts`) 생성
+다음으로 사용할 HTTP 클라이언트 타입을 선택합니다:
+
+```
+? HTTP 클라이언트를 선택해주세요 (Use arrow keys)
+❯ fetch
+  axios
+```
+
+`instance.ts` 파일이 생성됩니다.
 
 :::info
 자동생성 경로는 `src/config/__generated__/{fetch 또는 axios}/instance.ts` 입니다.

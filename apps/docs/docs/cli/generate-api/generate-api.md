@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# API 코드 생성하기
+# Usage
 
 설정 파일(`mashup.config.ts`)이 준비되었다면 OpenAPI 스펙에서 TypeScript API 클라이언트 코드를 생성할 수 있습니다.
 
@@ -54,7 +54,7 @@ yarn mash-up-web
   </TabItem>
 </Tabs>
 
-### 2. gen:api 선택
+### 2. API 자동생성
 
 CLI를 실행하면 다음과 같은 메뉴가 나타납니다:
 
