@@ -71,12 +71,12 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/mash-up-web-toolkit-social-card.png',
     navbar: {
       title: 'Mash-Up Web Toolkit',
       logo: {
         alt: 'Mash-Up Web Toolkit Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         // {
