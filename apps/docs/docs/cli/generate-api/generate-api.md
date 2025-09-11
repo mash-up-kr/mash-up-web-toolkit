@@ -60,9 +60,9 @@ CLI를 실행하면 다음과 같은 메뉴가 나타납니다:
 
 ```
 ? 명령을 선택해주세요. (Use arrow keys)
-❯ gen:config
+  gen:config
   gen:api-config
-  gen:api
+❯ gen:api
 ```
 
 **`gen:api`**를 선택하세요.
