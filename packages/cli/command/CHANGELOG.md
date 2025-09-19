@@ -1,5 +1,27 @@
 # @mash-up-web-toolkit/command
 
+## 0.0.18
+
+### Patch Changes
+
+- Update dependencies version
+
+## 0.0.17
+
+### Patch Changes
+
+- Update package.json
+
+## 0.0.16
+
+### Patch Changes
+
+- Update package.json
+- Updated dependencies
+  - @mash-up-web-toolkit/generate-api-config@0.0.2
+  - @mash-up-web-toolkit/generate-config@0.0.9
+  - @mash-up-web-toolkit/generate-api@0.0.14
+
 ## 0.0.15
 
 ### Patch Changes

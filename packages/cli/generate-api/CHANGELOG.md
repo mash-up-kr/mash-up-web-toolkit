@@ -1,5 +1,11 @@
 # @mash-up-web-toolkit/generate-api
 
+## 0.0.14
+
+### Patch Changes
+
+- Update package.json
+
 ## 0.0.13
 
 ### Patch Changes

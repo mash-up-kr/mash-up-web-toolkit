@@ -1,6 +1,6 @@
 {
   "name": "@mash-up-web-toolkit/generate-api-config",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate API config File for @mash-up-web-toolkit/generate-api",
   "type": "module",
   "repository": {
@@ -16,10 +16,13 @@
       "default": "./dist/index.js"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
-    "publish": "npm publish --access public"
+    "publish": "pnpm publish --no-git-checks --access public"
   },
   "devDependencies": {
     "@mash-up-web-toolkit/eslint-config": "workspace:*",
