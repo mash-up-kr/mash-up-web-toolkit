@@ -1,5 +1,11 @@
 # @mash-up-web-toolkit/generate-config
 
+## 0.0.9
+
+### Patch Changes
+
+- Update package.json
+
 ## 0.0.8
 
 ### Patch Changes
