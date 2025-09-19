@@ -11,7 +11,7 @@
     "build:util-types": "cd packages/util-types && pnpm build",
     "clean:utils": "rm -rf node_modules && cd packages/utils && pnpm clean",
     "build:utils": "cd packages/utils && pnpm build",
-    "publish:cli": "cd packages/cli/command && pnpm publish && cd ../generate-api && pnpm publish && cd ../generate-config && pnpm publish",
+    "publish:cli": "cd packages/cli/command && pnpm publish && cd ../generate-api && pnpm publish && cd ../generate-api-config && pnpm publish && cd ../generate-config && pnpm publish",
     "publish:util-types": "cd packages/util-types && pnpm publish",
     "publish:utils": "cd packages/utils && pnpm publish",
     "publish:all": "pnpm publish:cli && pnpm publish:util-types && pnpm publish:utils",
