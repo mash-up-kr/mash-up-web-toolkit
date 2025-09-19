@@ -1,5 +1,11 @@
 # @mash-up-web-toolkit/command
 
+## 0.0.18
+
+### Patch Changes
+
+- Update dependencies version
+
 ## 0.0.17
 
 ### Patch Changes
