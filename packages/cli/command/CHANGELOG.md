@@ -1,5 +1,11 @@
 # @mash-up-web-toolkit/command
 
+## 0.0.17
+
+### Patch Changes
+
+- Update package.json
+
 ## 0.0.16
 
 ### Patch Changes
