@@ -14,7 +14,7 @@
     "build": "tsup src/index.ts --format esm --dts && cp -r src/templates dist/",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
     "playground": "tsx src/playground/playground.ts",
-    "publish": "npm publish --access public"
+    "publish": "npm publish --no-git-checks --access public"
   },
   "exports": {
     ".": {

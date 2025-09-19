@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
-    "publish": "npm publish --access public"
+    "publish": "npm publish --no-git-checks --access public"
   },
   "exports": {
     ".": {
