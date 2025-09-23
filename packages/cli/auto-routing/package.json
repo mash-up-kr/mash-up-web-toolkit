@@ -21,7 +21,6 @@
   "devDependencies": {
     "@types/node": "^20.12.12",
     "chalk": "^5.4.1",
-    "commander": "^13.1.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^2.0.4",
     "tsup": "^8.4.0"
