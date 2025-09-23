@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cli": "node ../../packages/cli/command/dist/index.js",
-    "route": "auto-routing generate"
+    "cli": "node ../../packages/cli/command/dist/index.js"
   },
   "dependencies": {
     "@mash-up-web-toolkit/command": "workspace:*",
@@ -25,7 +24,6 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
-    "@mash-up-web-toolkit/auto-routing": "workspace:*",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
