@@ -14,7 +14,7 @@ export const welcome = () => {
 };
 
 export const runPrompt = async () => {
-  const choices = ["gen:config", "gen:api"];
+  const choices = ["gen:config", "gen:api", "gen:routes"];
 
   inquirer
     .prompt([
@@ -41,12 +41,26 @@ export const main = async () => {
     .version("0.0.1");
 
   program
+    .command("gen:routes")
+    .description(
+      "Next.js App Router 프로젝트의 라우팅 구조를 분석하여 Routing 파일을 생성합니다.",
+    )
+    .option(
+      "-o, --output <path>",
+      "생성된 파일의 저장 경로",
+      "src/constants/routes.ts",
+    )
+    .action(async (options) => {
+      await controller.genRoutes(options);
+    });
+
+  program
     .command("gen:api")
     .description("API 코드를 생성합니다")
     .option(
       "-t, --type <type>",
       "HTTP 클라이언트 타입 (fetch 또는 axios)",
-      "fetch"
+      "fetch",
     )
     .action(async (options) => {
       const httpClientType = options.type as "fetch" | "axios";
