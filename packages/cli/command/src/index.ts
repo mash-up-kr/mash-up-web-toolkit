@@ -3,6 +3,7 @@ import inquirer from "inquirer";
 import { Command } from "commander";
 import { Controller } from "@/controller/controller.js";
 import { commandFactory } from "@/controller/command-factory.js";
+import type { RunAutoRoutingOptions } from "@mash-up-web-toolkit/auto-routing";
 
 // config 모듈 내보내기
 export type { MashupConfig } from "./types/types.js";
@@ -50,8 +51,8 @@ export const main = async () => {
       "생성된 파일의 저장 경로",
       "src/constants/routes.ts",
     )
-    .action(async (options) => {
-      await controller.genRoutes(options);
+    .action(async (output: RunAutoRoutingOptions) => {
+      await controller.genRoutes(output);
     });
 
   program

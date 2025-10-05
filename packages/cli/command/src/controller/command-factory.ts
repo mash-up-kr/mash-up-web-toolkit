@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import { Controller } from "@/controller/controller.js";
+import type { RunAutoRoutingOptions } from "@mash-up-web-toolkit/auto-routing";
 
 export interface CommandHandler {
   execute(controller: Controller): Promise<void>;
@@ -32,7 +33,7 @@ class CommandFactory {
 
 class GenRoutesCommandHandler implements CommandHandler {
   async execute(controller: Controller): Promise<void> {
-    const routeAnswer = await inquirer.prompt([
+    const output: RunAutoRoutingOptions = await inquirer.prompt([
       {
         name: "output",
         type: "input",
@@ -40,7 +41,7 @@ class GenRoutesCommandHandler implements CommandHandler {
         default: "src/constants/routes.ts",
       },
     ]);
-    await controller.genRoutes(routeAnswer);
+    await controller.genRoutes(output);
   }
 }
 

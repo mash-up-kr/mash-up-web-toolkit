@@ -12,8 +12,8 @@ export type GenApiParams = {
 export class Controller {
   constructor() {}
 
-  async genRoutes(options: RunAutoRoutingOptions) {
-    await runAutoRouting(options);
+  async genRoutes({ output }: RunAutoRoutingOptions) {
+    await runAutoRouting({ output });
   }
 
   async genApi(params: GenApiParams) {

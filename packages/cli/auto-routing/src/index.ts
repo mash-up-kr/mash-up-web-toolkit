@@ -11,9 +11,9 @@ export interface RunAutoRoutingOptions {
 
 /**
  * auto-routing CLI의 핵심 로직을 수행하는 메인 함수입니다.
- * @param options - CLI에서 전달된 옵션 객체
+ * @param output - CLI에서 전달된 출력 경로입니다.
  */
-export async function runAutoRouting(options: RunAutoRoutingOptions) {
+export async function runAutoRouting({ output }: RunAutoRoutingOptions) {
   try {
     console.log(chalk.blue("🚀 auto-routing을 시작합니다..."));
     const projectRoot = process.cwd();
@@ -25,7 +25,7 @@ export async function runAutoRouting(options: RunAutoRoutingOptions) {
     const generatedCode = await generateRouteCode(routeFiles, projectRoot);
 
     // 3. 저장할 파일 경로 생성
-    const outputPath = path.resolve(projectRoot, options.output);
+    const outputPath = path.resolve(projectRoot, output);
 
     // 4. 라우팅 코드 저장
     await saveFile(outputPath, generatedCode);
