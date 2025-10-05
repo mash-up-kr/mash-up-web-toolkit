@@ -51,8 +51,8 @@ export const main = async () => {
       "생성된 파일의 저장 경로",
       "src/constants/routes.ts",
     )
-    .action(async (output: RunAutoRoutingOptions) => {
-      await controller.genRoutes(output);
+    .action(async ({ output }: RunAutoRoutingOptions) => {
+      await controller.genRoutes({ output });
     });
 
   program

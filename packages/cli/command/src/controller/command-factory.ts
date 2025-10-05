@@ -33,7 +33,7 @@ class CommandFactory {
 
 class GenRoutesCommandHandler implements CommandHandler {
   async execute(controller: Controller): Promise<void> {
-    const output: RunAutoRoutingOptions = await inquirer.prompt([
+    const { output }: RunAutoRoutingOptions = await inquirer.prompt([
       {
         name: "output",
         type: "input",
@@ -41,7 +41,7 @@ class GenRoutesCommandHandler implements CommandHandler {
         default: "src/constants/routes.ts",
       },
     ]);
-    await controller.genRoutes(output);
+    await controller.genRoutes({ output });
   }
 }
 
