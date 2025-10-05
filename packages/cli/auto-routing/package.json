@@ -1,7 +1,7 @@
 {
   "name": "@mash-up-web-toolkit/auto-routing",
   "version": "0.0.1",
-  "description": "",
+  "description": "Generate auto routing constants file used by @mash-up-web-toolkit/auto-routing",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
