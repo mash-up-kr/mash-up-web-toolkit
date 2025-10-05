@@ -16,7 +16,7 @@
     "auto-routing": "./dist/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "jeongwoo903",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.12.12",
