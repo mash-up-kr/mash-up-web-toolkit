@@ -1,0 +1,28 @@
+{
+  "name": "@mash-up-web-toolkit/auto-routing",
+  "version": "0.0.1",
+  "description": "Generate auto routing constants file used by @mash-up-web-toolkit/auto-routing",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean --"
+  },
+  "bin": {
+    "auto-routing": "./dist/index.js"
+  },
+  "keywords": [],
+  "author": "jeongwoo903",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "chalk": "^5.4.1",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^2.0.4",
+    "tsup": "^8.4.0"
+  }
+}

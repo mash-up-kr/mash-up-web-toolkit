@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import { Controller } from "@/controller/controller.js";
+import type { RunAutoRoutingOptions } from "@mash-up-web-toolkit/auto-routing";
 
 export interface CommandHandler {
   execute(controller: Controller): Promise<void>;
@@ -9,6 +10,7 @@ class CommandFactory {
   private handlers: Record<string, CommandHandler> = {};
 
   constructor() {
+    this.register("gen:routes", new GenRoutesCommandHandler());
     this.register("gen:api", new GenApiCommandHandler());
     this.register("gen:config", new GenConfigCommandHandler());
   }
@@ -26,6 +28,20 @@ class CommandFactory {
     }
 
     await handler.execute(controller);
+  }
+}
+
+class GenRoutesCommandHandler implements CommandHandler {
+  async execute(controller: Controller): Promise<void> {
+    const { output }: RunAutoRoutingOptions = await inquirer.prompt([
+      {
+        name: "output",
+        type: "input",
+        message: "파일의 저장 경로를 입력해주세요.",
+        default: "src/constants/routes.ts",
+      },
+    ]);
+    await controller.genRoutes({ output });
   }
 }
 
