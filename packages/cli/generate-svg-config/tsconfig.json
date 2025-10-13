@@ -17,6 +17,8 @@
     "outDir": "dist",
     "rootDir": ".",
     "baseUrl": ".",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "paths": {
       "@/*": ["src/*"]
     }
