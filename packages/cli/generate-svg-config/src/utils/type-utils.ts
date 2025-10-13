@@ -4,8 +4,8 @@ import path from 'node:path';
 import {
   svgrTypeDeclarationForNext,
   svgrTypeDeclarationForVite,
-} from '../template/svgr-type-declaration.js';
-import { ProjectType } from '../types/project.js';
+} from '../template/svgr-type-declaration.ts';
+import { type ProjectType } from '../types/project.ts';
 
 /**
  * svgr.d.ts 파일 또는 vite-env.d.ts 파일을 생성합니다.
@@ -42,7 +42,7 @@ export const createTypeDeclaration = (projectType: ProjectType): void => {
 /**
  * tsconfig.json의 include 배열에 SVG 타입 선언을 위한 항목을 추가합니다.
  */
-export const updateTsConfigIncludes = (): void => {
+export const updateTsConfigForNext = (): void => {
   const tsconfigPath = path.resolve(process.cwd(), 'tsconfig.json');
   let tsconfig: any;
 
@@ -106,4 +106,10 @@ export const updateTsConfigIncludes = (): void => {
   } else {
     console.log('✅ tsconfig.json에 이미 필요한 include가 모두 존재합니다.');
   }
+};
+
+// svgr 관련 타입 선언과 tsconfig.json 설정 전체 함수
+export const svgrTypeSetup = (projectType: ProjectType): void => {
+  createTypeDeclaration(projectType);
+  if (projectType === 'next') updateTsConfigForNext();
 };
