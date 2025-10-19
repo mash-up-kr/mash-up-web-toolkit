@@ -1,17 +1,17 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
-import { parse, print, types, visit } from 'recast';
-import tsParser from 'recast/parsers/typescript.js';
+import { parse, print, types, visit } from "recast";
+import tsParser from "recast/parsers/typescript.js";
 
-import { getClosestCallExpression } from './ast.ts';
+import { getClosestCallExpression } from "./ast.ts";
 
 /**
  * Vite 설정 파일에 svgr 플러그인을 추가하는 함수
  */
 export const addSvgrToViteConfig = (configPath: string): void => {
   // 1. 파일 읽기
-  const configContent = fs.readFileSync(configPath, 'utf8');
+  const configContent = fs.readFileSync(configPath, "utf8");
 
   // 2. AST로 파싱 (TypeScript 지원 파서 사용)
   const ast = parse(configContent, { parser: tsParser });
@@ -20,10 +20,10 @@ export const addSvgrToViteConfig = (configPath: string): void => {
   let hasPluginAdded = false;
 
   const pluginsProp = types.builders.property(
-    'init',
-    types.builders.identifier('plugins'),
+    "init",
+    types.builders.identifier("plugins"),
     types.builders.arrayExpression([
-      types.builders.callExpression(types.builders.identifier('svgr'), []),
+      types.builders.callExpression(types.builders.identifier("svgr"), []),
     ])
   );
 
@@ -35,9 +35,9 @@ export const addSvgrToViteConfig = (configPath: string): void => {
 
       // svgr import가 이미 있는지 확인
       const hasSvgrImport = body.some(
-        node =>
-          node.type === 'ImportDeclaration' &&
-          node.source?.value === 'vite-plugin-svgr'
+        (node) =>
+          node.type === "ImportDeclaration" &&
+          node.source?.value === "vite-plugin-svgr"
       );
 
       if (!hasSvgrImport) {
@@ -45,16 +45,16 @@ export const addSvgrToViteConfig = (configPath: string): void => {
         const svgrImport = types.builders.importDeclaration(
           [
             types.builders.importDefaultSpecifier(
-              types.builders.identifier('svgr')
+              types.builders.identifier("svgr")
             ),
           ],
-          types.builders.literal('vite-plugin-svgr')
+          types.builders.literal("vite-plugin-svgr")
         );
 
         // vite import 다음에 삽입
         const viteImportIndex = body.findIndex(
-          node =>
-            node.type === 'ImportDeclaration' && node.source?.value === 'vite'
+          (node) =>
+            node.type === "ImportDeclaration" && node.source?.value === "vite"
         );
 
         if (viteImportIndex !== -1) {
@@ -78,32 +78,32 @@ export const addSvgrToViteConfig = (configPath: string): void => {
       const parent = path.parent?.node;
 
       if (
-        (parent?.type === 'Property' || parent?.type === 'ObjectProperty') &&
-        node.type === 'ArrayExpression'
+        (parent?.type === "Property" || parent?.type === "ObjectProperty") &&
+        node.type === "ArrayExpression"
       ) {
         const isPluginsKey =
           (types.namedTypes.Identifier.check(parent.key) &&
-            parent.key.name === 'plugins') ||
+            parent.key.name === "plugins") ||
           (types.namedTypes.Literal.check(parent.key) &&
-            String(parent.key.value) === 'plugins');
+            String(parent.key.value) === "plugins");
 
         if (!isPluginsKey) {
           this.traverse(path);
           return;
         }
         // 이미 svgr()가 있는지 확인
-        const hasSvgr = node.elements?.some(element => {
+        const hasSvgr = node.elements?.some((element) => {
           if (!types.namedTypes.CallExpression.check(element)) return false;
           const callee = element.callee;
           return (
-            types.namedTypes.Identifier.check(callee) && callee.name === 'svgr'
+            types.namedTypes.Identifier.check(callee) && callee.name === "svgr"
           );
         });
 
         if (!hasSvgr) {
           // svgr() 호출 추가
           const svgrCall = types.builders.callExpression(
-            types.builders.identifier('svgr'),
+            types.builders.identifier("svgr"),
             []
           );
 
@@ -120,7 +120,7 @@ export const addSvgrToViteConfig = (configPath: string): void => {
 
       const isMergeConfig =
         types.namedTypes.Identifier.check(node.callee) &&
-        node.callee.name === 'mergeConfig';
+        node.callee.name === "mergeConfig";
 
       if (!isMergeConfig) {
         this.traverse(path);
@@ -130,12 +130,12 @@ export const addSvgrToViteConfig = (configPath: string): void => {
       // mergeConfig 함수의 인자 중 객체로 받는 인자에서 plugins 속성이 있는지 확인
       const hasPlugins = node.arguments
         .filter(
-          arg =>
-            arg.type === 'ObjectExpression' ||
-            (arg.type === 'TSSatisfiesExpression' &&
-              arg.expression.type === 'ObjectExpression')
+          (arg) =>
+            arg.type === "ObjectExpression" ||
+            (arg.type === "TSSatisfiesExpression" &&
+              arg.expression.type === "ObjectExpression")
         )
-        .map(arg => {
+        .map((arg) => {
           if (types.namedTypes.ObjectExpression.check(arg)) {
             return arg;
           }
@@ -144,14 +144,14 @@ export const addSvgrToViteConfig = (configPath: string): void => {
           }
           return null;
         })
-        .some(child => {
+        .some((child) => {
           if (child === null) return false;
           if (types.namedTypes.ObjectExpression.check(child)) {
             return child.properties.some(
-              prop =>
+              (prop) =>
                 types.namedTypes.ObjectProperty.check(prop) &&
                 types.namedTypes.Identifier.check(prop.key) &&
-                prop.key.name === 'plugins'
+                prop.key.name === "plugins"
             );
           }
 
@@ -180,15 +180,15 @@ export const addSvgrToViteConfig = (configPath: string): void => {
       // defineConfig 함수의 인자로 함수를 넘길 때, config 객체를 리턴하는 경우
       if (
         types.namedTypes.Identifier.check(callExpr?.callee) &&
-        callExpr?.callee?.name === 'defineConfig' &&
+        callExpr?.callee?.name === "defineConfig" &&
         types.namedTypes.ArrowFunctionExpression.check(node) &&
-        node.body.type === 'ObjectExpression'
+        node.body.type === "ObjectExpression"
       ) {
         const hasPlugins = node.body.properties.some(
-          prop =>
+          (prop) =>
             types.namedTypes.ObjectProperty.check(prop) &&
             types.namedTypes.Identifier.check(prop.key) &&
-            prop.key.name === 'plugins'
+            prop.key.name === "plugins"
         );
 
         if (!hasPlugins) {
@@ -207,15 +207,15 @@ export const addSvgrToViteConfig = (configPath: string): void => {
       const { node } = path;
       if (
         types.namedTypes.Identifier.check(callExpr?.callee) &&
-        callExpr?.callee?.name === 'defineConfig' &&
+        callExpr?.callee?.name === "defineConfig" &&
         types.namedTypes.ReturnStatement.check(node) &&
         types.namedTypes.ObjectExpression.check(node.argument)
       ) {
         const hasPlugins = node.argument.properties.some(
-          prop =>
+          (prop) =>
             types.namedTypes.ObjectProperty.check(prop) &&
             types.namedTypes.Identifier.check(prop.key) &&
-            prop.key.name === 'plugins'
+            prop.key.name === "plugins"
         );
 
         if (!hasPlugins) {
@@ -231,13 +231,13 @@ export const addSvgrToViteConfig = (configPath: string): void => {
       const { node } = path;
       if (
         types.namedTypes.ExportDefaultDeclaration.check(node) &&
-        node.declaration.type === 'ObjectExpression'
+        node.declaration.type === "ObjectExpression"
       ) {
         const hasPlugins = node.declaration.properties.some(
-          prop =>
+          (prop) =>
             types.namedTypes.ObjectProperty.check(prop) &&
             types.namedTypes.Identifier.check(prop.key) &&
-            prop.key.name === 'plugins'
+            prop.key.name === "plugins"
         );
 
         if (!hasPlugins) {
@@ -254,29 +254,28 @@ export const addSvgrToViteConfig = (configPath: string): void => {
     const modifiedCode = print(ast, {
       tabWidth: 2,
       useTabs: false,
-      quote: 'double',
+      quote: "double",
     }).code;
 
-    fs.writeFileSync(configPath, modifiedCode, 'utf8');
+    fs.writeFileSync(configPath, modifiedCode, "utf8");
 
-    console.log('✅ vite.config.ts에 svgr 플러그인이 추가되었습니다.');
+    console.log("✅ vite.config.ts에 svgr 플러그인이 추가되었습니다.");
 
     if (hasImportAdded) {
-      console.log('  - vite-plugin-svgr import 추가됨');
+      console.log("  - vite-plugin-svgr import 추가됨");
     }
     if (hasPluginAdded) {
-      console.log('  - plugins 배열에 svgr() 추가됨');
+      console.log("  - plugins 배열에 svgr() 추가됨");
     }
   } else {
-    console.log(hasImportAdded, hasPluginAdded);
-    console.log('✅ vite.config.ts에 이미 svgr 플러그인이 설정되어 있습니다.');
+    console.log("✅ vite.config.ts에 이미 svgr 플러그인이 설정되어 있습니다.");
   }
 };
 
 /**
  * 사용 예시
  */
-export const setupViteSvgr = (lang: 'ts' | 'js'): void => {
+export const setupViteSvgr = (lang: "ts" | "js"): void => {
   const configPath = path.resolve(process.cwd(), `vite.config.${lang}`);
 
   if (!fs.existsSync(configPath)) {
