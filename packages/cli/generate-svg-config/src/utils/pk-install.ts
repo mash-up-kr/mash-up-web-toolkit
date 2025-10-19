@@ -94,6 +94,18 @@ export async function installPackages(
     console.error(`❌ 패키지 설치 중 오류가 발생했습니다: ${error}`);
   }
 }
+
+export async function installSvgrForNext(options?: {
+  pm?: PackageManager;
+  cwd?: string;
+}) {
+  await installPackages(["@svgr/webpack"], {
+    dev: true,
+    pm: options?.pm,
+    cwd: options?.cwd,
+  });
+}
+
 export async function installVitePluginSvgr(options?: {
   pm?: PackageManager;
   cwd?: string;
