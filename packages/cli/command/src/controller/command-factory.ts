@@ -13,6 +13,7 @@ class CommandFactory {
     this.register("gen:routes", new GenRoutesCommandHandler());
     this.register("gen:api", new GenApiCommandHandler());
     this.register("gen:config", new GenConfigCommandHandler());
+    this.register("gen:svg-config", new GenSvgConfigCommandHandler());
   }
 
   register(command: string, handler: CommandHandler) {
@@ -66,6 +67,12 @@ class GenApiCommandHandler implements CommandHandler {
 class GenConfigCommandHandler implements CommandHandler {
   async execute(controller: Controller): Promise<void> {
     await controller.initConfig();
+  }
+}
+
+class GenSvgConfigCommandHandler implements CommandHandler {
+  async execute(controller: Controller): Promise<void> {
+    controller.genSvgConfig();
   }
 }
 

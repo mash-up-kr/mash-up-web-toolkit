@@ -15,7 +15,7 @@ export const welcome = () => {
 };
 
 export const runPrompt = async () => {
-  const choices = ["gen:config", "gen:api", "gen:routes"];
+  const choices = ["gen:config", "gen:api", "gen:routes", "gen:svg-config"];
 
   inquirer
     .prompt([
@@ -44,12 +44,12 @@ export const main = async () => {
   program
     .command("gen:routes")
     .description(
-      "Next.js App Router 프로젝트의 라우팅 구조를 분석하여 Routing 파일을 생성합니다.",
+      "Next.js App Router 프로젝트의 라우팅 구조를 분석하여 Routing 파일을 생성합니다."
     )
     .option(
       "-o, --output <path>",
       "생성된 파일의 저장 경로",
-      "src/constants/routes.ts",
+      "src/constants/routes.ts"
     )
     .action(async ({ output }: RunAutoRoutingOptions) => {
       await controller.genRoutes({ output });
@@ -61,7 +61,7 @@ export const main = async () => {
     .option(
       "-t, --type <type>",
       "HTTP 클라이언트 타입 (fetch 또는 axios)",
-      "fetch",
+      "fetch"
     )
     .action(async (options) => {
       const httpClientType = options.type as "fetch" | "axios";
@@ -73,6 +73,13 @@ export const main = async () => {
     .description("설정 파일을 생성합니다")
     .action(async () => {
       await controller.initConfig();
+    });
+
+  program
+    .command("gen:svg-config")
+    .description("SVG 설정을 생성합니다")
+    .action(async () => {
+      await controller.genSvgConfig();
     });
 
   if (process.argv.length <= 2) {
