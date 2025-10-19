@@ -1,18 +1,18 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
-import { parse, print, types, visit } from 'recast';
-import tsParser from 'recast/parsers/typescript.js';
+import { parse, print, types, visit } from "recast";
+import tsParser from "recast/parsers/typescript.js";
 
 import {
   nextjsWebpackConfig,
   nextjsWebpackConfigWithTurbopack,
   nextjsWebpackConfigTS,
   nextjsWebpackConfigWithTurbopackTS,
-} from '../template/nextjs-config.ts';
-import type { ObjectExpression, Property, FunctionLike } from '../types/ast.ts';
+} from "../template/nextjs-config.ts";
+import type { ObjectExpression, Property, FunctionLike } from "../types/ast.ts";
 
-import { ensureObjectProperty, getPropertyByKey } from './ast.ts';
+import { ensureObjectProperty, getPropertyByKey } from "./ast.ts";
 
 // recast의 NodePath의 타입이 별도 모듈로 export되지 않으므로, 아래와 같이 정의
 type NodePathLike = {
@@ -41,7 +41,7 @@ function findConfigObject(
           types.namedTypes.ObjectExpression.check(node.init)
         ) {
           // NodePath의 타입 정보 구체화
-          found = { path: p.get('init') as NodePathLike, node: node.init };
+          found = { path: p.get("init") as NodePathLike, node: node.init };
           return false;
         }
         this.traverse(p);
@@ -56,7 +56,7 @@ function findConfigObject(
       const { node } = p;
       if (types.namedTypes.ObjectExpression.check(node.declaration)) {
         result = {
-          path: p.get('declaration') as NodePathLike,
+          path: p.get("declaration") as NodePathLike,
           node: node.declaration,
         };
         return false;
@@ -77,14 +77,14 @@ function findConfigObject(
       if (
         types.namedTypes.MemberExpression.check(node.left) &&
         types.namedTypes.Identifier.check(node.left.object) &&
-        node.left.object.name === 'module' &&
+        node.left.object.name === "module" &&
         ((types.namedTypes.Identifier.check(node.left.property) &&
-          node.left.property.name === 'exports') ||
+          node.left.property.name === "exports") ||
           (types.namedTypes.Literal.check(node.left.property) &&
-            node.left.property.value === 'exports'))
+            node.left.property.value === "exports"))
       ) {
         if (types.namedTypes.ObjectExpression.check(node.right)) {
-          result = { path: p.get('right') as NodePathLike, node: node.right };
+          result = { path: p.get("right") as NodePathLike, node: node.right };
           return false;
         }
         if (types.namedTypes.Identifier.check(node.right)) {
@@ -104,31 +104,31 @@ function findConfigObject(
 
 // turbopack.rules에 *.svg 규칙을 추가하거나 병합하는 함수
 function ensureTurbopackRule(configObj: ObjectExpression): void {
-  const turbopack = ensureObjectProperty(configObj, 'turbopack');
-  const rules = ensureObjectProperty(turbopack, 'rules');
+  const turbopack = ensureObjectProperty(configObj, "turbopack");
+  const rules = ensureObjectProperty(turbopack, "rules");
 
   // '*.svg' 규칙 찾기
-  let svgRuleProp = getPropertyByKey(rules, '*.svg') as
+  let svgRuleProp = getPropertyByKey(rules, "*.svg") as
     | types.namedTypes.Property
     | types.namedTypes.ObjectProperty
     | null;
 
   if (!svgRuleProp) {
     svgRuleProp = types.builders.property(
-      'init',
-      types.builders.literal('*.svg'),
+      "init",
+      types.builders.literal("*.svg"),
       types.builders.objectExpression([
         types.builders.property(
-          'init',
-          types.builders.identifier('loaders'),
+          "init",
+          types.builders.identifier("loaders"),
           types.builders.arrayExpression([
-            types.builders.literal('@svgr/webpack'),
+            types.builders.literal("@svgr/webpack"),
           ])
         ),
         types.builders.property(
-          'init',
-          types.builders.identifier('as'),
-          types.builders.literal('*.js')
+          "init",
+          types.builders.identifier("as"),
+          types.builders.literal("*.js")
         ),
       ])
     );
@@ -140,23 +140,23 @@ function ensureTurbopackRule(configObj: ObjectExpression): void {
   const ruleObj = (
     svgRuleProp as types.namedTypes.Property | types.namedTypes.ObjectProperty
   ).value as ObjectExpression;
-  if (!getPropertyByKey(ruleObj, 'loaders')) {
+  if (!getPropertyByKey(ruleObj, "loaders")) {
     ruleObj.properties.push(
       types.builders.property(
-        'init',
-        types.builders.identifier('loaders'),
+        "init",
+        types.builders.identifier("loaders"),
         types.builders.arrayExpression([
-          types.builders.literal('@svgr/webpack'),
+          types.builders.literal("@svgr/webpack"),
         ])
       )
     );
   }
-  if (!getPropertyByKey(ruleObj, 'as')) {
+  if (!getPropertyByKey(ruleObj, "as")) {
     ruleObj.properties.push(
       types.builders.property(
-        'init',
-        types.builders.identifier('as'),
-        types.builders.literal('*.js')
+        "init",
+        types.builders.identifier("as"),
+        types.builders.literal("*.js")
       )
     );
   }
@@ -165,7 +165,8 @@ function ensureTurbopackRule(configObj: ObjectExpression): void {
 // webpack 메서드를 생성하는 코드 스니펫을 파싱하여 Property로 반환하는 함수
 function createWebpackMethodProperty(): Property {
   const snippet = `const __x = { webpack(config) {
-  const fileLoaderRule = config.module.rules.find((rule) =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const fileLoaderRule = config.module.rules.find((rule: any) =>
     rule.test?.test?.('.svg'),
   );
 
@@ -194,7 +195,7 @@ function createWebpackMethodProperty(): Property {
     visitVariableDeclarator(p) {
       const init = (p.node as types.namedTypes.VariableDeclarator).init;
       if (init && types.namedTypes.ObjectExpression.check(init)) {
-        const found = getPropertyByKey(init, 'webpack');
+        const found = getPropertyByKey(init, "webpack");
         if (found) {
           prop = found as Property;
           return false;
@@ -203,7 +204,7 @@ function createWebpackMethodProperty(): Property {
       this.traverse(p);
     },
   });
-  if (!prop) throw new Error('Failed to build webpack property');
+  if (!prop) throw new Error("Failed to build webpack property");
   return prop;
 }
 
@@ -213,8 +214,8 @@ function hasSvgrInWebpack(fn: FunctionLike): boolean {
   visit(fn, {
     visitLiteral(p) {
       if (
-        typeof p.node.value === 'string' &&
-        p.node.value === '@svgr/webpack'
+        typeof p.node.value === "string" &&
+        p.node.value === "@svgr/webpack"
       ) {
         found = true;
         return false;
@@ -279,12 +280,12 @@ function injectWebpackSvgHandling(fn: FunctionLike): void {
   const configIdentName =
     firstParam && types.namedTypes.Identifier.check(firstParam)
       ? firstParam.name
-      : 'config';
+      : "config";
 
-  statements.forEach(stmt => {
+  statements.forEach((stmt) => {
     visit(stmt, {
       visitIdentifier(p) {
-        if (p.node.name === '__CONFIG__') {
+        if (p.node.name === "__CONFIG__") {
           p.replace(types.builders.identifier(configIdentName));
           return false;
         }
@@ -300,7 +301,7 @@ function injectWebpackSvgHandling(fn: FunctionLike): void {
       const id = (p.node as types.namedTypes.VariableDeclarator).id;
       if (
         types.namedTypes.Identifier.check(id) &&
-        id.name === 'fileLoaderRule'
+        id.name === "fileLoaderRule"
       ) {
         hasExistingFileLoaderRule = true;
         return false;
@@ -316,10 +317,10 @@ function injectWebpackSvgHandling(fn: FunctionLike): void {
       const decls =
         (s as types.namedTypes.VariableDeclaration).declarations || [];
       return !decls.some(
-        d =>
+        (d) =>
           types.namedTypes.VariableDeclarator.check(d) &&
           types.namedTypes.Identifier.check(d.id) &&
-          d.id.name === 'fileLoaderRule'
+          d.id.name === "fileLoaderRule"
       );
     });
   }
@@ -332,7 +333,7 @@ function injectWebpackSvgHandling(fn: FunctionLike): void {
       | types.namedTypes.ObjectMethod
   ).body;
   if (types.namedTypes.BlockStatement.check(body)) {
-    const idx = body.body.findIndex(s =>
+    const idx = body.body.findIndex((s) =>
       types.namedTypes.ReturnStatement.check(s)
     );
     if (idx >= 0) {
@@ -355,7 +356,7 @@ function injectWebpackSvgHandling(fn: FunctionLike): void {
 
 // config 객체에 webpack 프로퍼티가 없다면 생성, 있으면 patch
 function ensureWebpackProperty(configObj: ObjectExpression): void {
-  const webpackProp = getPropertyByKey(configObj, 'webpack');
+  const webpackProp = getPropertyByKey(configObj, "webpack");
   if (!webpackProp) {
     const newWebpackProp = createWebpackMethodProperty();
     (configObj.properties as (Property | null)[]).push(newWebpackProp);
@@ -381,18 +382,18 @@ function ensureWebpackProperty(configObj: ObjectExpression): void {
 
 // 요청된 확장자(lang)와 turbopack 사용 여부에 따라 알맞은 템플릿을 반환
 function getNextConfigTemplate(
-  lang: 'js' | 'mjs' | 'ts',
+  lang: "js" | "mjs" | "ts",
   enableTurbopack: boolean
 ): string {
   // TS는 ESM 형식 템플릿 존재
-  if (lang === 'ts') {
+  if (lang === "ts") {
     return enableTurbopack
       ? nextjsWebpackConfigWithTurbopackTS
       : nextjsWebpackConfigTS;
   }
 
   // JS는 CJS 템플릿 사용 (주의: 이름과 내용이 반대이므로 내용 기준으로 선택)
-  if (lang === 'js') {
+  if (lang === "js") {
     return enableTurbopack
       ? nextjsWebpackConfig
       : nextjsWebpackConfigWithTurbopack;
@@ -406,11 +407,11 @@ function getNextConfigTemplate(
   // 간단 변환: 타입 import 제거, 타입 주석 제거
   const withoutTypeImport = tsEsm.replace(
     /\n?import type \{\s*NextConfig\s*\} from 'next'\s*\n?/g,
-    ''
+    ""
   );
   const withoutTypeAnnotation = withoutTypeImport.replace(
     /const\s+nextConfig:\s*NextConfig\s*=\s*\{/g,
-    'const nextConfig = {'
+    "const nextConfig = {"
   );
   return withoutTypeAnnotation;
 }
@@ -423,22 +424,22 @@ export const updateNextConfig = (
   // 파일이 없으면 템플릿을 활용해 생성
   if (!fs.existsSync(configPath)) {
     const ext = path.extname(configPath); // '.js' | '.mjs' | '.ts'
-    const lang = (ext.replace('.', '') || 'js') as 'js' | 'mjs' | 'ts';
+    const lang = (ext.replace(".", "") || "js") as "js" | "mjs" | "ts";
     const template = getNextConfigTemplate(lang, enableTurbopack);
 
-    fs.writeFileSync(configPath, template.trim() + '\n', 'utf8');
+    fs.writeFileSync(configPath, template.trim() + "\n", "utf8");
     console.warn(
       `✅ ${path.basename(configPath)} 파일이 생성되었습니다. 템플릿이 적용되었습니다.`
     );
   }
 
   // 파일 내용을 파싱
-  const original = fs.readFileSync(configPath, 'utf8');
+  const original = fs.readFileSync(configPath, "utf8");
   let ast: types.ASTNode;
   try {
     ast = parse(original, { parser: tsParser });
   } catch (e) {
-    console.error('❌ next config 파싱 중 오류가 발생했습니다.', e);
+    console.error("❌ next config 파싱 중 오류가 발생했습니다.", e);
     return;
   }
 
@@ -446,7 +447,7 @@ export const updateNextConfig = (
   const found = findConfigObject(ast);
   if (!found) {
     console.error(
-      '❌ Next.js 설정 객체를 찾지 못했습니다. 수동으로 설정을 추가해주세요.'
+      "❌ Next.js 설정 객체를 찾지 못했습니다. 수동으로 설정을 추가해주세요."
     );
     return;
   }
@@ -464,12 +465,12 @@ export const updateNextConfig = (
   const modified = print(ast, {
     tabWidth: 2,
     useTabs: false,
-    quote: 'double',
+    quote: "double",
   }).code;
 
   // 변경 내용이 있으면 파일에 씀
   if (modified !== original) {
-    fs.writeFileSync(configPath, modified, 'utf8');
+    fs.writeFileSync(configPath, modified, "utf8");
     console.warn(
       `✅ ${path.basename(configPath)}에 SVG 관련 설정이 적용되었습니다.`
     );
@@ -483,16 +484,16 @@ export const updateNextConfig = (
 // 확장자별로 next.config 파일을 쉽게 셋업하는 헬퍼 함수
 export const setupNextSvgr = (useTurbopack: boolean): void => {
   const candidateFiles = [
-    'next.config.ts',
-    'next.config.js',
-    'next.config.mjs',
+    "next.config.ts",
+    "next.config.js",
+    "next.config.mjs",
   ];
-  const foundConfigFile = candidateFiles.find(file =>
+  const foundConfigFile = candidateFiles.find((file) =>
     fs.existsSync(path.resolve(process.cwd(), file))
   );
   if (!foundConfigFile) {
     console.error(
-      '❌ next.config.ts 또는 next.config.js 또는 next.config.mjs 파일을 찾을 수 없습니다.'
+      "❌ next.config.ts 또는 next.config.js 또는 next.config.mjs 파일을 찾을 수 없습니다."
     );
     return;
   }
