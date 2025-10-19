@@ -35,6 +35,11 @@ const completeMessage = (projectType: ProjectType) => {
       "src 폴더 아래에 svg 파일을 추가한 후, import 시 파일 확장자 뒤에 ?react를 추가해주세요."
     );
     console.log("예시: import ReactLogo from './assets/react.svg?react';");
+  } else {
+    console.log(
+      "src 폴더 혹은 app 폴더 아래에 svg 파일을 추가한 후 사용해주세요."
+    );
+    console.log("예시: import NextLogo from './next.svg';");
   }
 };
 
