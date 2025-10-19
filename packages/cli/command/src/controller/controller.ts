@@ -5,7 +5,7 @@ import {
   type RunAutoRoutingOptions,
 } from "@mash-up-web-toolkit/auto-routing";
 import { initConfig as initializeConfig } from "@mash-up-web-toolkit/generate-config";
-
+import { runGenerateSvgConfig } from "@mash-up-web-toolkit/generate-svg-config";
 export type GenApiParams = {
   httpClientType: "fetch" | "axios";
 };
@@ -23,6 +23,10 @@ export class Controller {
       httpClientType: params.httpClientType,
       ...genApiConfig,
     });
+  }
+
+  async genSvgConfig() {
+    await runGenerateSvgConfig();
   }
 
   async initConfig() {
