@@ -481,11 +481,21 @@ export const updateNextConfig = (
 };
 
 // 확장자별로 next.config 파일을 쉽게 셋업하는 헬퍼 함수
-export const setupNextSvgr = (
-  lang: 'js' | 'mjs' | 'ts',
-  useTurbopack: boolean
-): void => {
-  const fileName = `next.config.${lang}`;
-  const configPath = path.resolve(process.cwd(), fileName);
-  updateNextConfig(configPath, useTurbopack);
+export const setupNextSvgr = (useTurbopack: boolean): void => {
+  const candidateFiles = [
+    'next.config.ts',
+    'next.config.js',
+    'next.config.mjs',
+  ];
+  const foundConfigFile = candidateFiles.find(file =>
+    fs.existsSync(path.resolve(process.cwd(), file))
+  );
+  if (!foundConfigFile) {
+    console.error(
+      '❌ next.config.ts 또는 next.config.js 또는 next.config.mjs 파일을 찾을 수 없습니다.'
+    );
+    return;
+  }
+  const resolvedConfigPath = path.resolve(process.cwd(), foundConfigFile);
+  updateNextConfig(resolvedConfigPath, useTurbopack);
 };
