@@ -87,6 +87,8 @@ export async function installPackages(
   // 실제 설치에 사용할 커맨드와 인자 생성
   const { cmd, args } = buildInstallArgs(pm, deps, options?.dev ?? false);
 
+  console.log(`⏳ 패키지 설치 중: ${cmd} ${args.join(" ")}`);
+
   // 커맨드를 비동기로 실행하여 패키지 설치
   try {
     await spawnAsync(cmd, args, options?.cwd);

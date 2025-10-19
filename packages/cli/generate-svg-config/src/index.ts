@@ -6,6 +6,10 @@ import {
   updateTsConfigForNext,
 } from "./utils/type-utils.ts";
 import type { ProjectType } from "./types/project.ts";
+import {
+  installSvgrForNext,
+  installVitePluginSvgr,
+} from "./utils/pk-install.ts";
 
 const detectProjectType = (): ProjectType => {
   if (hasDependency("next")) {
@@ -24,7 +28,17 @@ const detectLang = (): "ts" | "js" => {
   return "js";
 };
 
-export const initSvgConfig = (): void => {
+const completeMessage = (projectType: ProjectType) => {
+  console.log("✅ SVG 설정이 완료되었습니다!");
+  if (projectType === "vite") {
+    console.log(
+      "src 폴더 아래에 svg 파일을 추가한 후, import 시 파일 확장자 뒤에 ?react를 추가해주세요."
+    );
+    console.log("예시: import ReactLogo from './assets/react.svg?react';");
+  }
+};
+
+export const runGenerateSvgConfig = async (): Promise<void> => {
   console.log("🚀 SVG 설정을 시작합니다...");
 
   const projectType = detectProjectType();
@@ -37,21 +51,26 @@ export const initSvgConfig = (): void => {
 
   console.log(`📦 ${projectType.toUpperCase()} 프로젝트가 감지되었습니다.`);
 
-  switch (projectType) {
-    case "next": {
-      setupNextSvgr(true);
-      updateTsConfigForNext();
-      break;
-    }
-    case "vite": {
-      setupViteSvgr(lang);
-      break;
-    }
-  }
-
+  // 타입 선언 파일 생성
   if (lang === "ts") {
     createTypeDeclaration(projectType);
   }
 
-  console.log("✅ SVG 설정이 완료되었습니다!");
+  switch (projectType) {
+    case "next": {
+      await installSvgrForNext();
+      console.log("✅ @svgr/webpack 설치 완료");
+      setupNextSvgr(true);
+      updateTsConfigForNext();
+      completeMessage(projectType);
+      break;
+    }
+    case "vite": {
+      await installVitePluginSvgr();
+      console.log("✅ vite-plugin-svgr 설치 완료");
+      setupViteSvgr(lang);
+      completeMessage(projectType);
+      break;
+    }
+  }
 };

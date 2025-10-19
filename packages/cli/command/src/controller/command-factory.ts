@@ -72,7 +72,7 @@ class GenConfigCommandHandler implements CommandHandler {
 
 class GenSvgConfigCommandHandler implements CommandHandler {
   async execute(controller: Controller): Promise<void> {
-    controller.genSvgConfig();
+    await controller.genSvgConfig();
   }
 }
 
