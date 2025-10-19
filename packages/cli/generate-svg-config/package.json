@@ -22,12 +22,12 @@
   "files": [
     "dist"
   ],
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup src/index.ts --format esm --dts",
+    "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo"
   },
   "devDependencies": {
-    "@mash-up-web-toolkit/eslint-config": "workspace:*",
     "@types/node": "^22.13.10",
     "tsup": "^8.4.0",
     "tsx": "^4.19.3",
