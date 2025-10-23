@@ -1,10 +1,10 @@
+import type { RunAutoRoutingOptions } from '@mash-up-web-toolkit/auto-routing';
 import { Command } from 'commander';
 import figlet from 'figlet';
 import inquirer from 'inquirer';
 
 import { commandFactory } from '@/controller/command-factory.js';
-import { Controller } from '@/controller/controller.js';;
-import type { RunAutoRoutingOptions } from '@mash-up-web-toolkit/auto-routing';
+import { Controller } from '@/controller/controller.js';
 
 // config 모듈 내보내기
 export type { MashupConfig } from './types/types.js';
@@ -40,14 +40,14 @@ export const setupCliCommands = async (program: Command): Promise<void> => {
     .version('0.0.1');
 
   program
-    .command("gen:routes")
+    .command('gen:routes')
     .description(
-      "Next.js App Router 프로젝트의 라우팅 구조를 분석하여 Routing 파일을 생성합니다.",
+      'Next.js App Router 프로젝트의 라우팅 구조를 분석하여 Routing 파일을 생성합니다.'
     )
     .option(
-      "-o, --output <path>",
-      "생성된 파일의 저장 경로",
-      "src/constants/routes.ts",
+      '-o, --output <path>',
+      '생성된 파일의 저장 경로',
+      'src/constants/routes.ts'
     )
     .action(async ({ output }: RunAutoRoutingOptions) => {
       await controller.genRoutes({ output });
