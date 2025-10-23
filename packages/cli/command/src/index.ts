@@ -15,8 +15,8 @@ export const welcome = (): void => {
   console.log(figlet.textSync('Mash-Up Web CLI'));
 };
 
-export const runPrompt = async () => {
-  const choices = ['gen:config', 'gen:api', 'gen:api-config', 'gen:routes'];
+export const runInteractiveMode = async () => {
+  const choices = ['gen:config', 'gen:api-config', 'gen:api', 'gen:routes'];
 
   inquirer
     .prompt([
@@ -84,30 +84,6 @@ export const setupCliCommands = async (program: Command): Promise<void> => {
     .action(async options => {
       const httpClientType = options.type as 'fetch' | 'axios';
       await controller.initApiConfig({ httpClientType });
-    });
-
-  if (process.argv.length <= 2) {
-    runPrompt();
-  } else {
-    program.parse(process.argv);
-  }
-};
-
-export const runInteractiveMode = async () => {
-  const choices = ['gen:config', 'gen:api-config', 'gen:api'];
-
-  inquirer
-    .prompt([
-      {
-        name: 'command',
-        type: 'list',
-        message: '명령을 선택해주세요.',
-        choices,
-        default: choices[0],
-      },
-    ])
-    .then(answers => {
-      commandFactory.executeCommand(answers.command, controller);
     });
 };
 
