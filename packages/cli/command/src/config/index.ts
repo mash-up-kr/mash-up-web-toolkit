@@ -26,6 +26,25 @@ function determineFormat(): 'esm' | 'cjs' {
 }
 
 /**
+ * package.json의 type 필드를 확인하여 format을 결정하는 함수
+ */
+function determineFormat(): "esm" | "cjs" {
+  const cwd = process.cwd();
+  const packageJsonPath = path.resolve(cwd, "package.json");
+
+  try {
+    if (fs.existsSync(packageJsonPath)) {
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
+      return packageJson.type === "module" ? "esm" : "cjs";
+    }
+  } catch (error) {
+    console.warn("⚠️ package.json 읽기 실패, 기본값 cjs 사용:", error);
+  }
+
+  return "cjs"; // 기본값
+}
+
+/**
  * 설정 파일을 로드하는 함수
  */
 export async function loadConfig(): Promise<MashupConfig> {
