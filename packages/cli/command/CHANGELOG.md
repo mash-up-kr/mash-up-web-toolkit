@@ -1,5 +1,13 @@
 # @mash-up-web-toolkit/command
 
+## 0.0.19
+
+### Patch Changes
+
+- api 제너레이터 moduleNameFirstTag 속성 추가
+- Updated dependencies
+  - @mash-up-web-toolkit/generate-api@0.0.15
+
 ## 0.0.18
 
 ### Patch Changes
