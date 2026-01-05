@@ -1,5 +1,12 @@
 # @mash-up-web-toolkit/command
 
+## 0.0.20
+
+### Patch Changes
+
+- Updated dependencies [04ceca8]
+  - @mash-up-web-toolkit/generate-api-config@0.0.3
+
 ## 0.0.19
 
 ### Patch Changes
