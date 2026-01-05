@@ -2,8 +2,8 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 import {
-  axiosInstanceTemplate as fetchInstance,
-  fetchInstanceTemplate as axiosInstance,
+  fetchInstanceTemplate as fetchInstance,
+  axiosInstanceTemplate as axiosInstance,
 } from './config/template.js';
 
 export const initApiInstanceConfig = (httpClientType: 'fetch' | 'axios') => {
