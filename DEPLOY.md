@@ -1,0 +1,193 @@
+# 배포 가이드 (Deployment Guide)
+
+이 문서는 `mash-up-web-toolkit` 프로젝트의 npm 배포 프로세스를 설명합니다.
+
+## 📋 사전 준비사항
+
+1. **npm 로그인 확인**
+
+   ```bash
+   npm whoami
+   ```
+
+   - 로그인되어 있지 않다면: `npm login`
+
+2. **프로젝트 루트로 이동**
+
+   ```bash
+   cd /Users/bong/Desktop/Project/mash-up/mash-up-web-toolkit
+   ```
+
+3. **변경사항 확인**
+   ```bash
+   git status
+   ```
+
+## 🚀 배포 프로세스
+
+### 1단계: Changeset 생성 (변경사항 문서화)
+
+코드를 변경한 후, 커밋하기 **전에** changeset을 생성합니다.
+
+```bash
+pnpm changeset
+```
+
+**실행 시:**
+
+- 변경한 패키지 선택 (스페이스바로 다중 선택 가능)
+  - `@mash-up-web-toolkit/command`
+  - `@mash-up-web-toolkit/generate-api`
+  - `@mash-up-web-toolkit/generate-api-config`
+  - `@mash-up-web-toolkit/generate-config`
+  - `@mash-up-web-toolkit/util-types`
+  - `@mash-up-web-toolkit/utils`
+- 버전 타입 선택:
+  - `patch`: 버그 수정 (0.0.1 → 0.0.2)
+  - `minor`: 새 기능 추가 (0.0.1 → 0.1.0)
+  - `major`: 호환성 깨지는 변경 (0.0.1 → 1.0.0)
+- 변경사항 설명 입력
+
+`.changeset/` 폴더에 마크다운 파일이 생성됩니다.
+
+### 2단계: Changeset과 코드 변경사항 커밋
+
+```bash
+git add .
+git commit -m "feat: 변경사항 설명"
+git push origin main
+```
+
+### 3단계: 버전 업데이트 및 CHANGELOG 생성
+
+```bash
+pnpm changeset version
+```
+
+**이 명령어는:**
+
+- `package.json`의 버전을 자동 업데이트
+- 각 패키지의 `CHANGELOG.md` 자동 생성/업데이트
+- `.changeset/` 폴더의 changeset 파일들 삭제
+
+### 4단계: 버전 업데이트 커밋
+
+```bash
+git add .
+git commit -m "chore: version bump"
+git push origin main
+```
+
+### 5단계: 빌드
+
+```bash
+# 전체 빌드
+pnpm build:all
+
+# 또는 특정 패키지만 빌드
+pnpm build:cli      # CLI 패키지들만
+pnpm build:util-types  # util-types만
+pnpm build:utils   # utils만
+```
+
+### 6단계: npm 배포
+
+```bash
+# 전체 배포
+pnpm publish:all
+
+# 또는 특정 패키지만 배포
+pnpm publish:cli      # CLI 패키지들만
+pnpm publish:util-types  # util-types만
+pnpm publish:utils   # utils만
+```
+
+## 📦 배포되는 패키지 목록
+
+### CLI 패키지들 (`publish:cli`)
+
+- `@mash-up-web-toolkit/command`
+- `@mash-up-web-toolkit/generate-api`
+- `@mash-up-web-toolkit/generate-api-config`
+- `@mash-up-web-toolkit/generate-config`
+
+### 유틸리티 패키지들
+
+- `@mash-up-web-toolkit/util-types` (`publish:util-types`)
+- `@mash-up-web-toolkit/utils` (`publish:utils`)
+
+## ⚠️ 주의사항
+
+### 1. 버전 중복 오류
+
+```
+npm error 403 You cannot publish over the previously published versions: 0.0.15.
+```
+
+**해결:** `pnpm changeset version`을 실행하여 버전을 올려야 합니다.
+
+### 2. npm 인증 오류
+
+```
+npm error 404 Not Found - You do not have permission to access it.
+```
+
+**해결:**
+
+- `npm whoami`로 로그인 상태 확인
+- `npm login`으로 재로그인
+- npm 조직 권한 확인 (https://www.npmjs.com/org/mash-up-web-toolkit)
+
+### 3. Changeset 파일 누락
+
+배포 전에 반드시 `pnpm changeset`을 실행하여 변경사항을 문서화해야 합니다.
+
+## 🔄 빠른 참조 (체크리스트)
+
+```bash
+# 1. Changeset 생성
+pnpm changeset
+
+# 2. 커밋
+git add . && git commit -m "feat: 변경사항" && git push
+
+# 3. 버전 업데이트
+pnpm changeset version
+
+# 4. 커밋
+git add . && git commit -m "chore: version bump" && git push
+
+# 5. 빌드
+pnpm build:all
+
+# 6. 배포
+pnpm publish:all
+```
+
+## 📝 Changeset 설정
+
+- **자동 커밋:** 비활성화 (`commit: false`)
+- **기본 브랜치:** `main`
+- **내부 의존성 업데이트:** `patch` 버전으로 자동 업데이트
+
+## 🆘 문제 해결
+
+### 배포 실패 시
+
+1. 버전이 이미 배포되었는지 확인: npm 웹사이트에서 패키지 버전 확인
+2. 빌드가 성공했는지 확인: `pnpm build:all` 재실행
+3. npm 로그인 상태 확인: `npm whoami`
+
+### Changeset 파일이 있는데 버전 업데이트가 안 될 때
+
+```bash
+# changeset 파일 확인
+ls -la .changeset/
+
+# 버전 업데이트 강제 실행
+pnpm changeset version
+```
+
+---
+
+**마지막 업데이트:** 2025-12-10
