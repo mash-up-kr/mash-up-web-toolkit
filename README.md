@@ -25,6 +25,7 @@
 - [`@mash-up-web-toolkit/command`](./packages/cli/command) - 통합 CLI 인터페이스
 - [`@mash-up-web-toolkit/generate-api`](./packages/cli/generate-api) - API 클라이언트 코드 자동 생성
 - [`@mash-up-web-toolkit/generate-config`](./packages/cli/generate-config) - 프로젝트 설정 템플릿 생성
+- [`@mash-up-web-toolkit/auto-routing`](./packages/cli/auto-routing) - Next.js App Router 기반 라우트 상수 자동 생성
 
 ### 📚 공통 라이브러리
 

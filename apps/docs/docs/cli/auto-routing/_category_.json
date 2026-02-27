@@ -1,0 +1,8 @@
+{
+  "label": "Auto Routing",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Next.js App Router의 파일 구조를 분석하여 타입 안전한 라우트 상수를 자동으로 생성합니다."
+  }
+}
