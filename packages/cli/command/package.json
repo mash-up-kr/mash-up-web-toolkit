@@ -45,6 +45,7 @@
     "@mash-up-web-toolkit/generate-api": "workspace:*",
     "@mash-up-web-toolkit/generate-config": "workspace:*",
     "@mash-up-web-toolkit/generate-api-config": "workspace:*",
+    "@mash-up-web-toolkit/auto-routing": "workspace:*",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "esbuild": "^0.25.2",

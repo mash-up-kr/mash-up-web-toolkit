@@ -1,3 +1,4 @@
+import type { RunAutoRoutingOptions } from '@mash-up-web-toolkit/auto-routing';
 import { Command } from 'commander';
 import figlet from 'figlet';
 import inquirer from 'inquirer';
@@ -14,8 +15,8 @@ export const welcome = (): void => {
   console.log(figlet.textSync('Mash-Up Web CLI'));
 };
 
-export const runInteractiveMode = async (): Promise<void> => {
-  const choices = ['gen:config', 'gen:api-config', 'gen:api'];
+export const runInteractiveMode = async () => {
+  const choices = ['gen:config', 'gen:api-config', 'gen:api', 'gen:routes'];
 
   inquirer
     .prompt([
@@ -37,6 +38,20 @@ export const setupCliCommands = async (program: Command): Promise<void> => {
     .name('mash-up')
     .description('Mash-Up Web Toolkit CLI')
     .version('0.0.1');
+
+  program
+    .command('gen:routes')
+    .description(
+      'Next.js App Router 프로젝트의 라우팅 구조를 분석하여 Routing 파일을 생성합니다.'
+    )
+    .option(
+      '-o, --output <path>',
+      '생성된 파일의 저장 경로',
+      'src/constants/routes.ts'
+    )
+    .action(async ({ output }: RunAutoRoutingOptions) => {
+      await controller.genRoutes({ output });
+    });
 
   program
     .command('gen:api')
@@ -72,7 +87,7 @@ export const setupCliCommands = async (program: Command): Promise<void> => {
     });
 };
 
-export const main = async (): Promise<void> => {
+export const main = async () => {
   welcome();
 
   const program = new Command();

@@ -14,7 +14,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "build": "tsup src/index.ts --format esm --dts",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
     "publish": "pnpm publish --no-git-checks --access public"
   },
