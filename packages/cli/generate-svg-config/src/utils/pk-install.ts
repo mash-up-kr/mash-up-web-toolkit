@@ -5,18 +5,25 @@ import path from "node:path";
 export type PackageManager = "pnpm" | "yarn" | "npm"; // bun 미지원
 
 export function detectPackageManager(cwd = process.cwd()): PackageManager {
-  // 1) npm user agent 기반
-  const ua = process.env.npm_config_user_agent || "";
+  // 1) npm user agent 기반 (실행 시점 패키지 매니저 감지용, turbo env 선언 대상 아님)
+  // eslint-disable-next-line turbo/no-undeclared-env-vars -- CLI 실행 컨텍스트에서만 사용되는 런타임 env
+  const ua = process.env.npm_config_user_agent ?? "";
 
   if (ua.startsWith("pnpm")) return "pnpm";
   if (ua.startsWith("yarn")) return "yarn";
   if (ua.startsWith("npm")) return "npm";
 
-  // 2) lockfile 기반
-  const has = (p: string) => existsSync(path.resolve(cwd, p));
-  if (has("pnpm-lock.yaml")) return "pnpm";
-  if (has("yarn.lock")) return "yarn";
-  if (has("package-lock.json")) return "npm";
+  // 2) lockfile 기반 (현재 디렉터리 + 상위 디렉터리, pnpm 워크스페이스 대응)
+  const hasInDir = (dir: string, p: string): boolean => existsSync(path.resolve(dir, p));
+  let dir: string | null = path.resolve(cwd);
+  while (dir) {
+    if (hasInDir(dir, "pnpm-lock.yaml")) return "pnpm";
+    if (hasInDir(dir, "yarn.lock")) return "yarn";
+    if (hasInDir(dir, "package-lock.json")) return "npm";
+    const parent = path.dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
 
   // 3) 기본값
   return "npm";
