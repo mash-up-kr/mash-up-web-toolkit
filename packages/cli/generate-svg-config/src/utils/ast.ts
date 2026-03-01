@@ -24,6 +24,28 @@ export function getClosestCallExpression(
   return null;
 }
 
+/** Property / ObjectProperty / ObjectMethod 노드인지 확인 */
+function isObjectLikeProperty(
+  prop: ObjectExpression['properties'][number]
+): prop is Property | types.namedTypes.ObjectProperty | types.namedTypes.ObjectMethod {
+  return (
+    types.namedTypes.Property.check(prop) ||
+    types.namedTypes.ObjectProperty.check(prop) ||
+    types.namedTypes.ObjectMethod.check(prop)
+  );
+}
+
+/** prop.key가 주어진 keyName과 일치하는지 확인 (Identifier 또는 Literal) */
+function isKeyMatching(
+  prop: Property | types.namedTypes.ObjectProperty | types.namedTypes.ObjectMethod,
+  keyName: string
+): boolean {
+  const { key } = prop;
+  if (types.namedTypes.Identifier.check(key)) return key.name === keyName;
+  if (types.namedTypes.Literal.check(key)) return String(key.value) === keyName;
+  return false;
+}
+
 // 객체의 특정 key(property)를 찾아 반환하는 함수
 export function getPropertyByKey(
   obj: ObjectExpression,
@@ -31,15 +53,7 @@ export function getPropertyByKey(
 ): Property | types.namedTypes.ObjectProperty | null {
   for (const prop of obj.properties) {
     if (!prop) continue;
-    if (
-      (types.namedTypes.Property.check(prop) ||
-        types.namedTypes.ObjectProperty.check(prop) ||
-        types.namedTypes.ObjectMethod.check(prop)) &&
-      ((types.namedTypes.Identifier.check(prop.key) &&
-        prop.key.name === keyName) ||
-        (types.namedTypes.Literal.check(prop.key) &&
-          String(prop.key.value) === keyName))
-    ) {
+    if (isObjectLikeProperty(prop) && isKeyMatching(prop, keyName)) {
       return prop;
     }
   }
