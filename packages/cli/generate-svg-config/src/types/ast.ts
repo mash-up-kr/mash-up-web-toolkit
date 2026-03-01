@@ -1,4 +1,4 @@
-import { types } from 'recast';
+import { types } from "recast";
 
 export type ObjectExpression = types.namedTypes.ObjectExpression;
 export type Property =
