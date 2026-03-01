@@ -20,6 +20,9 @@
   "keywords": [],
   "author": "jeongwoo903",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/node": "^20.12.12",
     "chalk": "^5.4.1",
