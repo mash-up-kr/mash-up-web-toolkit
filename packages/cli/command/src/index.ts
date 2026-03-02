@@ -16,7 +16,7 @@ export const welcome = (): void => {
 };
 
 export const runInteractiveMode = async () => {
-  const choices = ['gen:config', 'gen:api-config', 'gen:api', 'gen:routes'];
+  const choices = ['gen:config', 'gen:api-config', 'gen:api', 'gen:routes', 'gen:svg-config'];
 
   inquirer
     .prompt([
@@ -32,6 +32,9 @@ export const runInteractiveMode = async () => {
       commandFactory.executeCommand(answers.command, controller);
     });
 };
+
+// 하위 호환용 별칭
+export const runPrompt = runInteractiveMode;
 
 export const setupCliCommands = async (program: Command): Promise<void> => {
   program
@@ -92,6 +95,13 @@ export const main = async () => {
 
   const program = new Command();
   setupCliCommands(program);
+
+  program
+    .command("gen:svg-config")
+    .description("SVG 설정을 생성합니다")
+    .action(async () => {
+      await controller.genSvgConfig();
+    });
 
   if (process.argv.length <= 2) {
     runInteractiveMode();

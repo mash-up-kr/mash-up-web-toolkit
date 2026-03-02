@@ -1,16 +1,17 @@
-import { generateApi } from "swagger-typescript-api";
-import path from "node:path";
-import fs from "node:fs";
+import fs from 'node:fs';
+import path from 'node:path';
+
+import { generateApi } from 'swagger-typescript-api';
 
 export const generateSwaggerApi = async (
   params: Parameters<typeof generateApi>[0]
 ): ReturnType<typeof generateApi> => {
   return await generateApi(params)
-    .then((generateApiOutput) => {
+    .then(generateApiOutput => {
       return generateApiOutput;
     })
-    .catch((error) => {
-      console.error("❌ API 생성 실패:", error);
+    .catch(error => {
+      console.error('❌ API 생성 실패:', error);
       process.exit(1);
     });
 };
@@ -25,7 +26,7 @@ export const writeGeneratedApi = async ({
   httpClientRewrite?: boolean;
 }) => {
   const { files } = await result;
-  files.forEach((element) => {
+  files.forEach(element => {
     const { fileName, fileContent } = element;
 
     console.log(`📄 ${fileName} 파일 내용 길이:`, fileContent.length);
@@ -37,13 +38,13 @@ export const writeGeneratedApi = async ({
     const folderPath = getFolderPath(outputPath, fileName);
 
     fs.mkdirSync(folderPath, { recursive: true });
-    if (fileName === "http-client") {
+    if (fileName === 'http-client') {
       if (httpClientRewrite) {
-        createFile(path.resolve(folderPath, "index.ts"), fileContent);
+        createFile(path.resolve(folderPath, 'index.ts'), fileContent);
       }
       return;
-    } else if (fileName === "data-contracts") {
-      createFile(path.resolve(folderPath, "index.ts"), fileContent);
+    } else if (fileName === 'data-contracts') {
+      createFile(path.resolve(folderPath, 'index.ts'), fileContent);
       return;
     }
     createFile(path.resolve(folderPath, `${fileName}.api.ts`), fileContent);
@@ -52,11 +53,11 @@ export const writeGeneratedApi = async ({
 
 const getFolderPath = (outputPath: string, name: string) => {
   switch (name) {
-    case "http-client": {
-      return path.resolve(outputPath, "@http-client");
+    case 'http-client': {
+      return path.resolve(outputPath, '@http-client');
     }
-    case "data-contracts": {
-      return path.resolve(outputPath, "@types");
+    case 'data-contracts': {
+      return path.resolve(outputPath, '@types');
     }
     default:
       return path.resolve(outputPath, name);
