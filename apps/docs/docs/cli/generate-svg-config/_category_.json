@@ -1,0 +1,8 @@
+{
+  "label": "SVG Config Generator",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Next.js 또는 Vite 프로젝트에 SVG를 React 컴포넌트로 사용하기 위한 설정을 자동으로 구성합니다."
+  }
+}
