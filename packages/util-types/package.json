@@ -21,10 +21,12 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
-    "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo"
+    "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
+    "publish": "npm publish --access public"
   },
   "devDependencies": {
     "tsup": "^8.4.0",
+    "@mash-up-web-toolkit/eslint-config": "workspace:*",
     "typescript": "latest"
   }
 }

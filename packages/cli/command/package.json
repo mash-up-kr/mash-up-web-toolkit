@@ -1,6 +1,6 @@
 {
   "name": "@mash-up-web-toolkit/command",
-  "version": "0.0.6",
+  "version": "0.0.20",
   "description": "mash-up-web-toolkit command line interface",
   "author": "brightbong92",
   "license": "MIT",
@@ -13,10 +13,14 @@
   "bin": {
     "mash-up-web": "./dist/index.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
-    "dev": "pnpm build && node dist/index.js"
+    "dev": "pnpm build && node dist/index.js",
+    "publish": "pnpm publish --no-git-checks --access public"
   },
   "exports": {
     ".": {
@@ -31,16 +35,18 @@
     "@types/figlet": "^1.7.0",
     "@types/node": "^22.13.10",
     "tsup": "^8.4.0",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "@mash-up-web-toolkit/eslint-config": "workspace:*"
   },
   "files": [
     "dist"
   ],
   "dependencies": {
-    "@mash-up-web-toolkit/generate-api": "0.0.6",
-    "@mash-up-web-toolkit/generate-config": "0.0.4",
-    "@mash-up-web-toolkit/auto-routing": "workspace:^",
-    "@mash-up-web-toolkit/generate-svg-config": "workspace:^",
+    "@mash-up-web-toolkit/generate-api": "workspace:*",
+    "@mash-up-web-toolkit/generate-config": "workspace:*",
+    "@mash-up-web-toolkit/generate-api-config": "workspace:*",
+    "@mash-up-web-toolkit/auto-routing": "workspace:*",
+    "@mash-up-web-toolkit/generate-svg-config": "workspace:*",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "esbuild": "^0.25.2",

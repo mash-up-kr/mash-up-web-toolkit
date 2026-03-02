@@ -1,6 +1,6 @@
 {
   "name": "@mash-up-web-toolkit/generate-api",
-  "version": "0.0.6",
+  "version": "0.0.15",
   "description": "API client code generator used by @mash-up-web-toolkit/command",
   "type": "module",
   "author": "brightbong92",
@@ -10,10 +10,14 @@
     "url": "https://github.com/mash-up-kr/mash-up-web-toolkit.git",
     "directory": "packages/cli/generate-api"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts && cp -r src/templates dist/",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
-    "playground": "tsx src/playground/playground.ts"
+    "playground": "tsx src/playground/playground.ts",
+    "publish": "pnpm publish --no-git-checks --access public"
   },
   "exports": {
     ".": {
@@ -25,6 +29,7 @@
     "dist"
   ],
   "devDependencies": {
+    "@mash-up-web-toolkit/eslint-config": "workspace:*",
     "@types/node": "^22.13.10",
     "tsup": "^8.4.0",
     "tsx": "^4.19.3",

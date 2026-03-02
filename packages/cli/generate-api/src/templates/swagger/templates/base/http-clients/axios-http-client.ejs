@@ -2,7 +2,8 @@
 const { apiConfig, generateResponses, config } = it;
 %>
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType, HeadersDefaults } from "axios";
+import type { AxiosInstance, AxiosRequestConfig, HeadersDefaults, ResponseType, AxiosResponse } from "axios";
+import axios from "axios";
 
 export type QueryParamsType = Record<string | number, any>;
 
@@ -27,10 +28,12 @@ export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequest
   securityWorker?: (securityData: SecurityDataType | null) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
+  instance?: AxiosInstance;
 }
 
 export enum ContentType {
   Json = "application/json",
+  JsonApi = "application/vnd.api+json",
   FormData = "multipart/form-data",
   UrlEncoded = "application/x-www-form-urlencoded",
   Text = "text/plain",
@@ -43,8 +46,8 @@ export class HttpClient<SecurityDataType = unknown> {
     private secure?: boolean;
     private format?: ResponseType;
 
-    constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-        this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "<%~ apiConfig.baseUrl %>" })
+    constructor({ instance, securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
+        this.instance = instance || axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "<%~ apiConfig.baseUrl %>" })
         this.secure = secure;
         this.format = format;
         this.securityWorker = securityWorker;
@@ -78,6 +81,9 @@ export class HttpClient<SecurityDataType = unknown> {
     }
 
     protected createFormData(input: Record<string, unknown>): FormData {
+      if (input instanceof FormData) {
+        return input;
+      }
       return Object.keys(input || {}).reduce((formData, key) => {
         const property = input[key];
         const propertyContent: any[] = (property instanceof Array) ? property : [property]
@@ -123,7 +129,7 @@ export class HttpClient<SecurityDataType = unknown> {
             ...requestParams,
             headers: {
                 ...(requestParams.headers || {}),
-                ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+                ...(type ? { "Content-Type": type } : {}),
             },
             params: query,
             responseType: responseFormat,
