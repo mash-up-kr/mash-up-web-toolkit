@@ -1,6 +1,6 @@
 {
   "name": "@mash-up-web-toolkit/generate-api-config",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generate API config File for @mash-up-web-toolkit/generate-api",
   "type": "module",
   "repository": {

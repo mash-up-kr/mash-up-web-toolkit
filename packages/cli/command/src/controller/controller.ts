@@ -5,6 +5,7 @@ import {
 import { runGenerateApi } from '@mash-up-web-toolkit/generate-api';
 import { initApiInstanceConfig } from '@mash-up-web-toolkit/generate-api-config';
 import { initConfig as initializeConfig } from '@mash-up-web-toolkit/generate-config';
+import { runGenerateSvgConfig } from '@mash-up-web-toolkit/generate-svg-config';
 
 import { loadConfig } from '@/config/index.js';
 
@@ -26,6 +27,10 @@ export class Controller {
       httpClientType: params.httpClientType,
       ...genApiConfig,
     });
+  }
+
+  async genSvgConfig() {
+    await runGenerateSvgConfig();
   }
 
   async initConfig() {

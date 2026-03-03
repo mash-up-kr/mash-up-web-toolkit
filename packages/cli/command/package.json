@@ -1,6 +1,6 @@
 {
   "name": "@mash-up-web-toolkit/command",
-  "version": "0.0.18",
+  "version": "0.0.20",
   "description": "mash-up-web-toolkit command line interface",
   "author": "brightbong92",
   "license": "MIT",
@@ -46,6 +46,7 @@
     "@mash-up-web-toolkit/generate-config": "workspace:*",
     "@mash-up-web-toolkit/generate-api-config": "workspace:*",
     "@mash-up-web-toolkit/auto-routing": "workspace:*",
+    "@mash-up-web-toolkit/generate-svg-config": "workspace:*",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "esbuild": "^0.25.2",

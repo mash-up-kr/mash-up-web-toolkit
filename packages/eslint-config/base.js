@@ -22,7 +22,16 @@ export const config = [
       'import/resolver': {
         typescript: {
           alwaysTryTypes: true,
-          project: ['tsconfig.json'],
+          // Point to all package tsconfigs so it works from repo root or package dir
+          project: [
+            'tsconfig.json',
+            'packages/*/tsconfig.json',
+            'packages/cli/*/tsconfig.json',
+            'apps/*/tsconfig.json',
+          ],
+        },
+        node: {
+          extensions: ['.js', '.mjs', '.ts', '.d.ts'],
         },
       },
     },

@@ -1,37 +1,40 @@
-import path from "node:path";
+import path from 'node:path';
+
+import { generateApi } from 'swagger-typescript-api';
 
 import {
   generateSwaggerApi,
   writeGeneratedApi,
-} from "@/generator/generator.js";
-import { generateApi } from "swagger-typescript-api";
-import { generateConfig } from "./configs/generate-config.js";
+} from '@/generator/generator.js';
+
+import { generateConfig } from './configs/generate-config.js';
 
 export type GenerateApiParamsType = {
   httpClientRewrite?: boolean;
-  httpClientType: "fetch" | "axios";
+  httpClientType: 'fetch' | 'axios';
+  moduleNameFirstTag?: boolean;
   instancePath?: string;
   url: string;
   output: string;
 } & Parameters<typeof generateApi>[0];
 
 export const runGenerateApi = async (params: GenerateApiParamsType) => {
-  const { instancePath, output } = params || {};
+  const { instancePath, output, moduleNameFirstTag = true } = params || {};
   const result = await generateSwaggerApi({
     ...params,
-    typeSuffix: "Type",
+    typeSuffix: 'Type',
     addReadonly: true,
     output: false,
-    moduleNameFirstTag: false,
+    moduleNameFirstTag,
     silent: true,
     modular: true,
     httpClientType: params.httpClientType,
     templates:
-      params.httpClientType === "axios"
-        ? generateConfig["CUSTOM_TEMPLATE_AXIOS"]
-        : generateConfig["CUSTOM_TEMPLATE_FETCH"],
+      params.httpClientType === 'axios'
+        ? generateConfig['CUSTOM_TEMPLATE_AXIOS']
+        : generateConfig['CUSTOM_TEMPLATE_FETCH'],
     hooks: {
-      onPrepareConfig: (currentConfiguration) => {
+      onPrepareConfig: currentConfiguration => {
         return {
           ...currentConfiguration,
           myConfig: {
@@ -48,11 +51,11 @@ export const runGenerateApi = async (params: GenerateApiParamsType) => {
     httpClientRewrite: params.httpClientRewrite,
   })
     .then(() => {
-      console.log("✅ API 생성 완료! 🌈✨");
+      console.log('✅ API 생성 완료! 🌈✨');
       process.exit(0);
     })
-    .catch((error) => {
-      console.error("❌ API 읽기/쓰기 실패:", error);
+    .catch(error => {
+      console.error('❌ API 읽기/쓰기 실패:', error);
       process.exit(1);
     });
 };
